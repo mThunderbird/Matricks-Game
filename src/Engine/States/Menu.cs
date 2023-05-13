@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGameEngine.src.Game;
+using MonoGameEngine.src.gameSpecific;
 
 namespace MonoGameEngine.src.Engine.States
 {
@@ -20,7 +22,7 @@ namespace MonoGameEngine.src.Engine.States
         public override void Init()
         {
             mLogo = new Drawable();
-            mLogo.Texture = ConfigurationManager.Instance.Logo;
+            mLogo.Texture = Config.Instance.Logo;
             mLogo.mPosition = new Vector2(Game1.WINDOW_WIDTH / 2, Game1.WINDOW_HEIGHT / 2);
             mLogo.mDimensions *= 0.3f;
             mLogo.mOrigin = mLogo.mDimensions / 2;

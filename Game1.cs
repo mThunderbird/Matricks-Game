@@ -4,14 +4,18 @@ using Microsoft.Xna.Framework.Input;
 using System;
 
 using MonoGameEngine.src.Engine;
+using MonoGameEngine.src.gameSpecific;
+using MonoGameEngine.src.Game;
 
 namespace MonoGameEngine
 {
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
-        public static int WINDOW_WIDTH = 1920;
-        public static int WINDOW_HEIGHT = 1080;
+        public static int WINDOW_WIDTH = 720;
+        public static int WINDOW_HEIGHT = 540;
+        public static GameTime curr_time;
+        public static double delta_time;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -30,15 +34,30 @@ namespace MonoGameEngine
 
         protected override void LoadContent()
         {
-            //_spriteBatch = new SpriteBatch(GraphicsDevice);
+            // passing the graphics device to our spriteBatch wrapper class Render
             Render.SetBatch(new SpriteBatch(GraphicsDevice));
 
             // TODO: use this.Content to load your game content here
-            ConfigurationManager.Instance.Logo = Content.Load<Texture2D>("cool_graphics/kiroIdrago");
+            // Passing Content.Load function to config manager to Init all required graphics
+            Config.Instance.Init( path => 
+            {
+                try
+                {
+                    return Content.Load<Texture2D>(path);
+                }
+                catch (Exception)
+                {
+                    System.Diagnostics.Debug.Write(path + " NOT_FOUND!");
+                    return Config.Instance.NOT_FOUND;
+                }
+            });
         }
 
         protected override void Update(GameTime gameTime)
         {
+            delta_time = gameTime.ElapsedGameTime.TotalMilliseconds/1000;
+            curr_time = gameTime;
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 

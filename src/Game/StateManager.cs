@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MonoGameEngine.src.Engine.States;
 
-namespace MonoGameEngine.src.Engine
+namespace MonoGameEngine.src.Game
 {
     /// <summary>
     /// Solution using Lazy implementation.
@@ -28,7 +24,7 @@ namespace MonoGameEngine.src.Engine
         {
             CurrentState.Dispose();
 
-            switch(state)
+            switch (state)
             {
                 case GAME_STATE.LOADING_SCREEN:
                     CurrentState = new LoadingScreen();
