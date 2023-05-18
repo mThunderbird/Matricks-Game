@@ -8,23 +8,40 @@ namespace MonoGameEngine.src.gameSpecific
     /// <summary>
     /// Solution using Lazy implementation.
     /// </summary>
-    internal class Config
+    internal sealed class Config
     {
-        private static readonly Lazy<Config> instance =
-        new Lazy<Config>(() => new Config());
-        public static Config Instance { get { return instance.Value; } }
+        private static readonly Config instance = new Config();
 
+        // Explicit static constructor to tell C# compiler
+        // not to mark type as beforefieldinit
+        static Config()
+        {
+
+        }
         private Config()
         {
         }
 
-        public void Init(Func<string, Texture2D> LoadTexture2D)
+        public static Config Instance
         {
-            NOT_FOUND = LoadTexture2D("NOT_FOUND");
-            Logo = LoadTexture2D("cool_graphics/kiroIdrago");
+            get { return instance; }
         }
+        
+        
+        public Texture2D TEXTURE_NOT_FOUND;
+        public Texture2D logo;
 
-        public Texture2D NOT_FOUND;
-        public Texture2D Logo;
+        public Texture2D gridTileA;
+        public Texture2D gridTileB;
+
+
+        public void Init(Func<string, Texture2D> loadTexture2D)
+        {
+            TEXTURE_NOT_FOUND = loadTexture2D("NOT_FOUND");
+            logo = loadTexture2D("cool_graphics/kiroIdrago");
+
+            gridTileA = loadTexture2D("grid/tile_brown");
+            gridTileB = loadTexture2D("grid/tile_white");
+        }
     }
 }

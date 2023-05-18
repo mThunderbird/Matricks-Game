@@ -11,10 +11,10 @@ using MonoGameEngine.src.gameSpecific;
 
 namespace MonoGameEngine.src.Engine.States
 {
-    internal class LoadingScreen : State
+    internal class Menu : State
     {
         Drawable mLogo;
-        public LoadingScreen()
+        public Menu()
         {
 
         }
@@ -22,17 +22,17 @@ namespace MonoGameEngine.src.Engine.States
         public override void Init()
         {
             mLogo = new Drawable();
-            mLogo.Texture = Config.Instance.Logo;
+            mLogo.Texture = Config.Instance.logo;
             mLogo.mPosition = new Vector2(Game1.WINDOW_WIDTH / 2, Game1.WINDOW_HEIGHT / 2);
             mLogo.mDimensions *= 0.3f;
             mLogo.mOrigin = mLogo.mDimensions / 2;
-
+            mLogo.mColor = Color.Red;
         }
 
         public override void Update()
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
-                StateManager.Instance.SwitchState(GAME_STATE.MENU);
+                StateManager.Instance.SwitchState(GAME_STATE.LOADING_SCREEN);
 
             base.Update();
         }

@@ -48,7 +48,7 @@ namespace MonoGameEngine
                 catch (Exception)
                 {
                     System.Diagnostics.Debug.Write(path + " NOT_FOUND!");
-                    return Config.Instance.NOT_FOUND;
+                    return Config.Instance.TEXTURE_NOT_FOUND;
                 }
             });
         }
