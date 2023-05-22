@@ -1,5 +1,6 @@
 ﻿using System;
 using MonoGameEngine.src.Engine.States;
+using MonoGameEngine.src.Game.States;
 
 namespace MonoGameEngine.src.Game
 {
@@ -12,7 +13,7 @@ namespace MonoGameEngine.src.Game
         static StateManager() { }
         private StateManager()
         {
-            CurrentState = new LoadingScreen();
+            CurrentState = new GamePlay();
             CurrentState.Init();
         }
         public static StateManager Instance { get { return instance; } }
