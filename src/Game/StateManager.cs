@@ -13,7 +13,7 @@ namespace MonoGameEngine.src.Game
         static StateManager() { }
         private StateManager()
         {
-            CurrentState = new GamePlay();
+            CurrentState = new LoadingScreen();
             CurrentState.Init();
         }
         public static StateManager Instance { get { return instance; } }
