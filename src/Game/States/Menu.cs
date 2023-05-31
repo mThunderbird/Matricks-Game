@@ -32,7 +32,7 @@ namespace MonoGameEngine.src.Engine.States
         public override void Update()
         {
             if (InputManager.eventIsKeyReleased(Keys.Space))
-                StateManager.Instance.SwitchState(GAME_STATE.LOADING_SCREEN);
+                StateManager.Instance.SwitchState(GAME_STATE.GAME_MODE_1);
 
             base.Update();
         }

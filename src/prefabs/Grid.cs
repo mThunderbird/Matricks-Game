@@ -25,6 +25,7 @@ namespace MonoGameEngine.src.prefabs
         Texture2D gridTileB;
         Texture2D gridMaskCross;
         Texture2D gridMaskPoint;
+        Texture2D gridMaskHover;
 
         /// <summary>
         ///  first [] contains index of row
@@ -38,6 +39,7 @@ namespace MonoGameEngine.src.prefabs
             gridTileB = Config.Instance.gridTileB;
             gridMaskCross = Config.Instance.gridMaskCross;
             gridMaskPoint = Config.Instance.gridMaskPoint;
+            gridMaskHover = Config.Instance.gridMaskHover;
 
             maximumGridHeight = Game1.WINDOW_HEIGHT - verticalMargin * 2;
             maximumGridWidth = Game1.WINDOW_WIDTH - horizontalMargin * 2;
@@ -76,10 +78,10 @@ namespace MonoGameEngine.src.prefabs
             position.Y = Game1.WINDOW_HEIGHT / 2 - dimensions.Y * tileSize / 2;
 
             matrix = new List<List<GridTile>>();
-            for (int i = 0; i < dimensions.Y; i++)
+            for (int i = 0; i < dimensions.X; i++)
             {
                 matrix.Add(new List<GridTile>());
-                for (int j = 0; j < dimensions.X; j++)
+                for (int j = 0; j < dimensions.Y; j++)
                 {
                     GridTile temp = new GridTile();
                     temp.mPosition = new Vector2(position.X + j * tileSize, position.Y + i * tileSize);
@@ -99,11 +101,27 @@ namespace MonoGameEngine.src.prefabs
             }
         }
 
+        public void update()
+		{
+            for (int i = 0; i < dimensions.X; i++)
+            {
+                for (int j = 0; j < dimensions.Y; j++)
+                {
+                    if (matrix[i][j].Bounds().Intersects(new Rectangle(InputManager.getMouseCoordinates().ToPoint(), new Point(1, 1)))) {
+                        matrix[i][j].setMask(gridMaskHover);
+					} else
+					{
+                        matrix[i][j].setMask(null);
+                    }
+                }
+            }
+		}
+
         public void draw()
         {
-            for(int i = 0; i < dimensions.Y; i ++)
+            for(int i = 0; i < dimensions.X; i ++)
             {
-                for(int j = 0; j < dimensions.X; j++)
+                for(int j = 0; j < dimensions.Y; j++)
                 {
                     matrix[i][j].Draw();
                 }

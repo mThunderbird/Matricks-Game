@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MonoGameEngine.src.prefabs;
 using Microsoft.Xna.Framework;
+using MonoGameEngine.src.Engine;
 
 namespace MonoGameEngine.src.Game.States
 {
@@ -24,6 +25,7 @@ namespace MonoGameEngine.src.Game.States
         public override void Update()
         {
             base.Update();
+            grid.update();
         }
 
         public override void Draw()

@@ -36,6 +36,7 @@ namespace MonoGameEngine.src.Game
                 case GAME_STATE.SETTINGS:
                     break;
                 case GAME_STATE.GAME_MODE_1:
+                    CurrentState = new GamePlay();
                     break;
                 case GAME_STATE.END_SCREEN_1:
                     break;
