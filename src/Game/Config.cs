@@ -30,6 +30,8 @@ internal sealed class Config
 
     public Texture2D gridTileA;
     public Texture2D gridTileB;
+    public Texture2D gridMaskCross;
+    public Texture2D gridMaskPoint;
 
     public void Init(Func<string, Texture2D> loadTexture2D)
     {
@@ -38,5 +40,8 @@ internal sealed class Config
 
         gridTileA = loadTexture2D("grid/tile_brown");
         gridTileB = loadTexture2D("grid/tile_white");
+        gridMaskCross = loadTexture2D("grid/cross");
+        gridMaskPoint = loadTexture2D("grid/point");
+
     }
 }
