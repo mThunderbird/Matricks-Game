@@ -40,7 +40,7 @@ namespace MonoGameEngine.src.Engine.States
         public override void Draw()
         {
             base.Draw();
-            mLogo.Draw();
+            if (InputManager.Instance.eventIsKeyReleased(Keys.A)) mLogo.Draw();
         }
 
         public override void Dispose()
