@@ -85,3 +85,10 @@
 /processorParam:TextureFormat=Color
 /build:NOT_FOUND.jpg
 
+#begin UI/fonts/File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:UI/fonts/File.spritefont;UI/fonts/GameFont1.spritefont
+

@@ -9,26 +9,21 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoGameEngine.src.Engine
 {
-	internal class InputManager
+	internal static class InputManager
 	{
-		private static readonly InputManager instance = new InputManager();
-		public static InputManager Instance { get { return instance; } }
+		private static KeyboardState previousKeyboardState;
+		private static MouseState previousMouseState;
 
-		private KeyboardState previousKeyboardState;
-		private MouseState previousMouseState;
+		public static Vector2 getMouseCoordinates() { return new Vector2(Mouse.GetState().X, Mouse.GetState().Y); }
 
-		private InputManager() { }
-
-		public Vector2 getMouseCoordinates() { return new Vector2(Mouse.GetState().X, Mouse.GetState().Y); }
-
-		public bool isMouseButtonPressed(MOUSE_BUTTON button) {
+		public static bool isMouseButtonPressed(MOUSE_BUTTON button) {
 			if (button == MOUSE_BUTTON.LEFT)
 			{
 				return Mouse.GetState().LeftButton == ButtonState.Pressed ? true : false;
 			}
 			return Mouse.GetState().RightButton == ButtonState.Pressed ? true : false;
 		}
-		public bool eventIsMouseReleased()
+		public static bool eventIsMouseReleased()
 		{
 			MouseState currentMouseState = Mouse.GetState();
 
@@ -43,7 +38,7 @@ namespace MonoGameEngine.src.Engine
 
 			return false;
 		}
-		public bool eventIsKeyReleased(Keys key)
+		public static bool eventIsKeyReleased(Keys key)
 		{
 			KeyboardState currentKeyboardState = Keyboard.GetState();
 

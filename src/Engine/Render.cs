@@ -25,9 +25,9 @@ namespace MonoGameEngine.src.Engine
             spriteBatch.Draw(_drawable.Texture, _drawable.Bounds(), null, _drawable.mColor, _drawable.mRotation, Vector2.Zero, SpriteEffects.None, 0);
         }
 
-        public static void Draw()
-        {
-            //spriteBatch.DrawString()
-        }
+        //public static void Draw(SpriteFont font, string Text, Rectangle rect)
+        //{
+        //    spriteBatch.DrawString(font, "MonoGame Font Test", position, Color.White, 0, textMiddlePoint, 1.0f, SpriteEffects.None, 0.5f)
+        //}
     }
 }

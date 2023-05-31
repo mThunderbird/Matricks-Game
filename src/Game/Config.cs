@@ -26,17 +26,21 @@ internal sealed class Config
     
     
     public Texture2D TEXTURE_NOT_FOUND;
+
     public Texture2D logo;
+    public SpriteFont font1;
 
     public Texture2D gridTileA;
     public Texture2D gridTileB;
     public Texture2D gridMaskCross;
     public Texture2D gridMaskPoint;
 
-    public void Init(Func<string, Texture2D> loadTexture2D)
+    public void Init(Func<string, Texture2D> loadTexture2D, Func<string, SpriteFont> loadFont)
     {
         TEXTURE_NOT_FOUND = loadTexture2D("NOT_FOUND");
+
         logo = loadTexture2D("cool_graphics/kiroIdrago");
+        font1 = loadFont("UI/fonts/File");
 
         gridTileA = loadTexture2D("grid/tile_brown");
         gridTileB = loadTexture2D("grid/tile_white");

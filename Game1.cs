@@ -38,8 +38,8 @@ namespace MonoGameEngine
 
             // TODO: use this.Content to load your game content here
             // Passing Content.Load function to config manager to Init all required graphics
-            Config.Instance.Init( path => 
-            {
+            Config.Instance.Init( 
+            path => {
                 try
                 {
                     return Content.Load<Texture2D>(path);
@@ -48,6 +48,17 @@ namespace MonoGameEngine
                 {
                     System.Diagnostics.Debug.Write(path + " NOT_FOUND!");
                     return Config.Instance.TEXTURE_NOT_FOUND;
+                }
+            },
+            path => {
+                try
+                {
+                    return Content.Load<SpriteFont>(path);
+                }
+                catch (Exception)
+                {
+                    System.Diagnostics.Debug.Write(path + " NOT_FOUND!");
+                    return null;
                 }
             });
         }

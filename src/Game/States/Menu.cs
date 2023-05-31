@@ -31,7 +31,7 @@ namespace MonoGameEngine.src.Engine.States
 
         public override void Update()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            if (InputManager.eventIsKeyReleased(Keys.Space))
                 StateManager.Instance.SwitchState(GAME_STATE.LOADING_SCREEN);
 
             base.Update();
