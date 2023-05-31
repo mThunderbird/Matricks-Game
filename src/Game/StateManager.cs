@@ -1,24 +1,25 @@
 ﻿using System;
 using MonoGameEngine.src.Engine.States;
+using MonoGameEngine.src.Game.States;
 
 namespace MonoGameEngine.src.Game
 {
     /// <summary>
     /// Solution using Lazy implementation.
     /// </summary>
-    internal class StateManager
+    internal sealed class StateManager
     {
-        private static readonly Lazy<StateManager> instance =
-        new Lazy<StateManager>(() => new StateManager());
-
-        public static StateManager Instance { get { return instance.Value; } }
-
-        public State CurrentState { get; private set; }
+        private static readonly StateManager instance = new StateManager();
+        static StateManager() { }
         private StateManager()
         {
-            CurrentState = new LoadingScreen();
+            CurrentState = new GamePlay();
             CurrentState.Init();
         }
+        public static StateManager Instance { get { return instance; } }
+
+        public State CurrentState { get; private set; }
+
 
         public void SwitchState(GAME_STATE state)
         {

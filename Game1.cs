@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Input;
 using System;
 
 using MonoGameEngine.src.Engine;
-using MonoGameEngine.src.gameSpecific;
 using MonoGameEngine.src.Game;
 
 namespace MonoGameEngine
@@ -12,8 +11,8 @@ namespace MonoGameEngine
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
-        public static int WINDOW_WIDTH = 720;
-        public static int WINDOW_HEIGHT = 540;
+        public static int WINDOW_WIDTH = 1920;
+        public static int WINDOW_HEIGHT = 1080;
         public static GameTime curr_time;
         public static double delta_time;
         public Game1()
@@ -48,7 +47,7 @@ namespace MonoGameEngine
                 catch (Exception)
                 {
                     System.Diagnostics.Debug.Write(path + " NOT_FOUND!");
-                    return Config.Instance.NOT_FOUND;
+                    return Config.Instance.TEXTURE_NOT_FOUND;
                 }
             });
         }
