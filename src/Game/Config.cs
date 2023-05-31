@@ -32,6 +32,7 @@ internal sealed class Config
     public Texture2D gridTileB;
     public Texture2D gridMaskCross;
     public Texture2D gridMaskPoint;
+    public Texture2D gridMaskHover;
 
     public void Init(Func<string, Texture2D> loadTexture2D)
     {
@@ -42,6 +43,7 @@ internal sealed class Config
         gridTileB = loadTexture2D("grid/tile_white");
         gridMaskCross = loadTexture2D("grid/cross");
         gridMaskPoint = loadTexture2D("grid/point");
+        gridMaskHover = loadTexture2D("grid/hover");
 
     }
 }

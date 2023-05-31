@@ -19,7 +19,7 @@ namespace MonoGameEngine.src.Engine
 
 		private InputManager() { }
 
-		public Vector2 getMouseCoordinates() { return new Vector2(Mouse.GetState().X, Mouse.GetState().Y); }
+		public Point getMouseCoordinates() { return new Point(Mouse.GetState().X, Mouse.GetState().Y); }
 
 		public bool isMouseButtonPressed(MOUSE_BUTTON button) {
 			if (button == MOUSE_BUTTON.LEFT)
