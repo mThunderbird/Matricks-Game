@@ -27,13 +27,15 @@ internal sealed class Config
     
     public Texture2D TEXTURE_NOT_FOUND;
 
+    public Texture2D background;
+
     public Texture2D logo;
-    public SpriteFont font1;
     public Texture2D pressSpaceTexture;
 
     public Texture2D playButton;
     public Texture2D settingsButton;
     public Texture2D exitButton;
+    public Texture2D gameBanner;
 
     public Texture2D gridTileA;
     public Texture2D gridTileB;
@@ -45,10 +47,11 @@ internal sealed class Config
     {
         TEXTURE_NOT_FOUND = loadTexture2D("NOT_FOUND");
 
-        logo = loadTexture2D("cool_graphics/kiroIdrago");
-        font1 = loadFont("UI/fonts/File");
-        pressSpaceTexture = loadTexture2D("UI/PRESS_SPACE_TO_CONTINUE");
+        background = loadTexture2D("background");
+        logo = loadTexture2D("UI/logo");
+        pressSpaceTexture = loadTexture2D("UI/pressToCont");
 
+        gameBanner = loadTexture2D("UI/gameBanner");
         playButton = loadTexture2D("UI/playButton");
         settingsButton = loadTexture2D("UI/settingsButton");
         exitButton = loadTexture2D("UI/exitButton");

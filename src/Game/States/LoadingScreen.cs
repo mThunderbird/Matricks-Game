@@ -13,6 +13,7 @@ namespace MonoGameEngine.src.Engine.States
     internal class LoadingScreen : State
     {
         Drawable mLogo;
+        Drawable mText;
         public LoadingScreen()
         {
 
@@ -23,9 +24,14 @@ namespace MonoGameEngine.src.Engine.States
             mLogo = new Drawable();
             mLogo.Texture = Config.Instance.logo;
             mLogo.mPosition = new Vector2(Game1.WINDOW_WIDTH / 2, Game1.WINDOW_HEIGHT / 2);
-            mLogo.mDimensions *= 0.3f;
+            mLogo.mDimensions = new Vector2(500, 500);
             mLogo.mOrigin = mLogo.mDimensions / 2;
 
+            mText = new Drawable();
+            mText.Texture = Config.Instance.pressSpaceTexture;
+            mText.mPosition = new Vector2(Game1.WINDOW_WIDTH / 2, Game1.WINDOW_HEIGHT - 200);
+            mText.mDimensions = new Vector2(1000, 100);
+            mText.mOrigin = mText.mDimensions / 2;
         }
 
         public override void Update()
@@ -43,6 +49,7 @@ namespace MonoGameEngine.src.Engine.States
         {
             base.Draw();
             mLogo.Draw();
+            mText.Draw();
         }
 
         public override void Dispose()
