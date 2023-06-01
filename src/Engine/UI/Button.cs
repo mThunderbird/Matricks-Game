@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 using MonoGameEngine.src;
+using MonoGameEngine.src.Engine;
 using System;
 
 namespace MonoGameEngine.src.Engine
@@ -11,7 +13,7 @@ namespace MonoGameEngine.src.Engine
 		Texture2D mask;
 		private bool drawMask = false;
 		Action func;
-
+		SoundEffect soundEffect;
 		public Button(Action _func) 
 		{ 
 			this.func = _func;
@@ -35,11 +37,17 @@ namespace MonoGameEngine.src.Engine
 		internal void onClick()
         {
 			func();
+			SoundPlayer.playSound(soundEffect);
 		}
 		internal void setMask(Texture2D _mask)
 		{
 			mask = _mask;
 		}
+
+		public void setSoundEff(SoundEffect _eff)
+        {
+			soundEffect = _eff;
+        }
 
 		public override void Draw()
 		{

@@ -40,16 +40,19 @@ namespace MonoGameEngine.src.Engine.States
             playButton.Texture = Config.Instance.playButton;
             playButton.mPosition = new Vector2(260, 820);
             playButton.mDimensions = new Vector2(540, 160);
+            playButton.setSoundEff(Config.Instance.clickSound);
 
             settingsButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.SETTINGS));
             settingsButton.Texture = Config.Instance.settingsButton;
             settingsButton.mPosition = new Vector2(1120, 820);
             settingsButton.mDimensions = new Vector2(540, 160);
+            settingsButton.setSoundEff(Config.Instance.clickSound);
 
             exitButton = new Button(() => Game1.end = true);
             exitButton.Texture = Config.Instance.exitButton;
             exitButton.mPosition = new Vector2(1770, 50);
             exitButton.mDimensions = new Vector2(100, 100);
+            exitButton.setSoundEff(Config.Instance.clickSound);
         }
 
         public override void Update()

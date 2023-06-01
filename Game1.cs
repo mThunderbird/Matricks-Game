@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 using System;
 
 using MonoGameEngine.src.Engine;
@@ -40,9 +41,13 @@ namespace MonoGameEngine
             Render.SetBatch(new SpriteBatch(GraphicsDevice));
 
             // TODO: use this.Content to load your game content here
-            // Passing Content.Load function to config manager to Init all required graphics
-            Config.Instance.Init( 
-            path => {
+            // Passing Content to config manager to Init all required graphics
+
+            //Config.Instance.Initv2(Content);
+
+            Config.Instance.Init(
+            path =>
+            {
                 try
                 {
                     return Content.Load<Texture2D>(path);
@@ -70,6 +75,18 @@ namespace MonoGameEngine
                 try
                 {
                     return Content.Load<Song>(path);
+                }
+                catch (Exception)
+                {
+                    System.Diagnostics.Debug.Write(path + " NOT_FOUND!");
+                    return null;
+                }
+            },
+            path =>
+            {
+                try
+                {
+                    return Content.Load<SoundEffect>(path);
                 }
                 catch (Exception)
                 {

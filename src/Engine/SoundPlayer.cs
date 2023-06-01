@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 namespace MonoGameEngine.src.Engine
 {
@@ -20,6 +21,10 @@ namespace MonoGameEngine.src.Engine
             MediaPlayer.Play(_song);
         }
 
+        public static void playSound(SoundEffect _effect)
+        {
+            _effect.Play();
+        }
 
     }
 }

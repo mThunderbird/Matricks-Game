@@ -1,7 +1,9 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 namespace MonoGameEngine.src.Game;
 
@@ -24,11 +26,12 @@ internal sealed class Config
         get { return instance; }
     }
     
+    public Song introSong;
+    public SoundEffect clickSound;
     
     public Texture2D TEXTURE_NOT_FOUND;
 
     public Texture2D background;
-    public Song introSong;
 
     public Texture2D logo;
     public Texture2D pressSpaceTexture;
@@ -49,12 +52,41 @@ internal sealed class Config
     public Texture2D gridMaskPoint;
     public Texture2D gridMaskHover;
 
-    public void Init(Func<string, Texture2D> loadTexture2D, Func<string, SpriteFont> loadFont, Func<string, Song> loadSong)
+    public void Initv2(ContentManager c)
     {
+        TEXTURE_NOT_FOUND = c.Load<Texture2D>("NOT_FOUND");
+
+        background = c.Load<Texture2D>("background");
+        introSong = c.Load<Song>("sounds/MenInBlackTheme");
+
+        logo = c.Load<Texture2D>("UI/logo");
+        pressSpaceTexture = c.Load<Texture2D>("UI/pressToCont");
+
+        gameBanner = c.Load<Texture2D>("UI/gameBanner");
+        playButton = c.Load<Texture2D>("UI/playButton");
+        settingsButton = c.Load<Texture2D>("UI/settingsButton");
+        exitButton = c.Load<Texture2D>("UI/exitButton");
+
+        backButton = c.Load<Texture2D>("UI/backButton");
+        gridTile1 = c.Load<Texture2D>("grid/gridTile1");
+        gridTile2 = c.Load<Texture2D>("grid/gridTile2");
+        gridTileBolts = c.Load<Texture2D>("grid/gridTile3");
+        gridTileBroken = c.Load<Texture2D>("grid/gridTileBroken");
+        gridTileLines = c.Load<Texture2D>("grid/gridTileLines");
+        gridTile2Part = c.Load<Texture2D>("grid/gridTile2Part");
+
+        gridMaskCross = c.Load<Texture2D>("grid/cross");
+        gridMaskPoint = c.Load<Texture2D>("grid/point");
+        gridMaskHover = c.Load<Texture2D>("grid/hover");
+    }
+    public void Init(Func<string, Texture2D> loadTexture2D, Func<string, SpriteFont> loadFont, Func<string, Song> loadSong, Func<string, SoundEffect> loadSound)
+    {
+        introSong = loadSong("sounds/MenInBlackTheme");
+        clickSound = loadSound("sounds/clickSound");
+
         TEXTURE_NOT_FOUND = loadTexture2D("NOT_FOUND");
 
         background = loadTexture2D("background");
-        introSong = loadSong("sounds/MenInBlackTheme");
 
         logo = loadTexture2D("UI/logo");
         pressSpaceTexture = loadTexture2D("UI/pressToCont");

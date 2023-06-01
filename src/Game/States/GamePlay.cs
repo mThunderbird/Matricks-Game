@@ -32,11 +32,14 @@ namespace MonoGameEngine.src.Game.States
             exitButton.Texture = Config.Instance.exitButton;
             exitButton.mPosition = new Vector2(1770, 50);
             exitButton.mDimensions = new Vector2(100, 100);
+            exitButton.setSoundEff(Config.Instance.clickSound);
+
 
             backButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.MENU));
             backButton.Texture = Config.Instance.backButton;
             backButton.mPosition = new Vector2(50, 50);
             backButton.mDimensions = new Vector2(100, 100);
+            backButton.setSoundEff(Config.Instance.clickSound);
 
             grid = new Grid(new Vector2(8, 8));
         }
