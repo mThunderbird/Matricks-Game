@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace MonoGameEngine.src.Game;
 
@@ -28,6 +28,7 @@ internal sealed class Config
     public Texture2D TEXTURE_NOT_FOUND;
 
     public Texture2D background;
+    public Song introSong;
 
     public Texture2D logo;
     public Texture2D pressSpaceTexture;
@@ -48,11 +49,13 @@ internal sealed class Config
     public Texture2D gridMaskPoint;
     public Texture2D gridMaskHover;
 
-    public void Init(Func<string, Texture2D> loadTexture2D, Func<string, SpriteFont> loadFont)
+    public void Init(Func<string, Texture2D> loadTexture2D, Func<string, SpriteFont> loadFont, Func<string, Song> loadSong)
     {
         TEXTURE_NOT_FOUND = loadTexture2D("NOT_FOUND");
 
         background = loadTexture2D("background");
+        introSong = loadSong("sounds/MenInBlackTheme");
+
         logo = loadTexture2D("UI/logo");
         pressSpaceTexture = loadTexture2D("UI/pressToCont");
 

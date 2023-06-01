@@ -109,6 +109,12 @@
 /processorParam:TextureFormat=Color
 /build:NOT_FOUND.jpg
 
+#begin sounds/MenInBlackTheme.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sounds/MenInBlackTheme.mp3
+
 #begin UI/backButton.png
 /importer:TextureImporter
 /processor:TextureProcessor

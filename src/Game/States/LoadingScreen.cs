@@ -35,7 +35,9 @@ namespace MonoGameEngine.src.Engine.States
             text = new Drawable();
             text.Texture = Config.Instance.pressSpaceTexture;
             text.mPosition = new Vector2(600, 1000);
-            text.mDimensions = new Vector2(720, 35); 
+            text.mDimensions = new Vector2(720, 35);
+
+            SoundPlayer.playSong(Config.Instance.introSong, 0.2f);
         }
 
         public override void Update()

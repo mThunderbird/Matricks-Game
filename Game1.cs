@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 
 using MonoGameEngine.src.Engine;
@@ -52,10 +53,23 @@ namespace MonoGameEngine
                     return Config.Instance.TEXTURE_NOT_FOUND;
                 }
             },
-            path => {
+            path =>
+            {
                 try
                 {
                     return Content.Load<SpriteFont>(path);
+                }
+                catch (Exception)
+                {
+                    System.Diagnostics.Debug.Write(path + " NOT_FOUND!");
+                    return null;
+                }
+            },
+            path =>
+            {
+                try
+                {
+                    return Content.Load<Song>(path);
                 }
                 catch (Exception)
                 {

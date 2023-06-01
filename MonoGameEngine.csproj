@@ -25,6 +25,7 @@
   <ItemGroup>
     <Folder Include="Content\bin\DesktopGL\Content\grid\" />
     <Folder Include="Content\bin\DesktopGL\Content\UI\" />
+    <Folder Include="Content\sounds\" />
     <Folder Include="Content\UI\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
