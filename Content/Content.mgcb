@@ -13,7 +13,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin cool_graphics/kiroIdrago.jpg
+#begin background.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -23,7 +23,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:cool_graphics/kiroIdrago.jpg
+/build:background.png
 
 #begin grid/cross.png
 /importer:TextureImporter
@@ -109,12 +109,29 @@
 /processorParam:TextureFormat=Color
 /build:UI/exitButton.png
 
-#begin UI/fonts/File.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
+#begin UI/gameBanner.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
 /processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:UI/fonts/File.spritefont;UI/fonts/GameFont1.spritefont
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/gameBanner.png
+
+#begin UI/logo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/logo.png
 
 #begin UI/playButton.png
 /importer:TextureImporter
@@ -128,7 +145,7 @@
 /processorParam:TextureFormat=Color
 /build:UI/playButton.png
 
-#begin UI/PRESS_SPACE_TO_CONTINUE.png
+#begin UI/pressToCont.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -138,7 +155,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:UI/PRESS_SPACE_TO_CONTINUE.png
+/build:UI/pressToCont.png
 
 #begin UI/settingsButton.png
 /importer:TextureImporter

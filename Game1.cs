@@ -26,6 +26,7 @@ namespace MonoGameEngine
             // TODO: Add your initialization logic here
             _graphics.PreferredBackBufferWidth = WINDOW_WIDTH;
             _graphics.PreferredBackBufferHeight = WINDOW_HEIGHT;
+            _graphics.ToggleFullScreen();
             _graphics.ApplyChanges();
 
             base.Initialize();

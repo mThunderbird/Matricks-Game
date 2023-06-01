@@ -10,10 +10,8 @@ namespace MonoGameEngine.src.prefabs
     internal class Grid
     {
         int maximumTileSize = 100;
-        int horizontalMargin = 200;
-        int verticalMargin = 200;
-        int maximumGridWidth;
-        int maximumGridHeight;
+        int maximumGridWidth = 1000;
+        int maximumGridHeight = 800;
 
         int tileSize;
 
@@ -40,9 +38,6 @@ namespace MonoGameEngine.src.prefabs
             gridMaskCross = Config.Instance.gridMaskCross;
             gridMaskPoint = Config.Instance.gridMaskPoint;
             gridMaskHover = Config.Instance.gridMaskHover;
-
-            maximumGridHeight = Game1.WINDOW_HEIGHT - verticalMargin * 2;
-            maximumGridWidth = Game1.WINDOW_WIDTH - horizontalMargin * 2;
 
             createMatrix(_dimensions);
 
