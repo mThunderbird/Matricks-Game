@@ -37,8 +37,13 @@ internal sealed class Config
     public Texture2D exitButton;
     public Texture2D gameBanner;
 
-    public Texture2D gridTileA;
-    public Texture2D gridTileB;
+    public Texture2D backButton;
+    public Texture2D gridTile1;
+    public Texture2D gridTile2;
+    public Texture2D gridTileBroken;
+    public Texture2D gridTileLines;
+    public Texture2D gridTileBolts;
+    public Texture2D gridTile2Part;
     public Texture2D gridMaskCross;
     public Texture2D gridMaskPoint;
     public Texture2D gridMaskHover;
@@ -56,8 +61,14 @@ internal sealed class Config
         settingsButton = loadTexture2D("UI/settingsButton");
         exitButton = loadTexture2D("UI/exitButton");
 
-        gridTileA = loadTexture2D("grid/tile_brown");
-        gridTileB = loadTexture2D("grid/tile_white");
+        backButton = loadTexture2D("UI/backButton");
+        gridTile1 = loadTexture2D("grid/gridTile1");
+        gridTile2 = loadTexture2D("grid/gridTile2");
+        gridTileBolts = loadTexture2D("grid/gridTile3");
+        gridTileBroken = loadTexture2D("grid/gridTileBroken");
+        gridTileLines = loadTexture2D("grid/gridTileLines");
+        gridTile2Part = loadTexture2D("grid/gridTile2Part");
+
         gridMaskCross = loadTexture2D("grid/cross");
         gridMaskPoint = loadTexture2D("grid/point");
         gridMaskHover = loadTexture2D("grid/hover");

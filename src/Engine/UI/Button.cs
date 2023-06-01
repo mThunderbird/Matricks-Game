@@ -21,7 +21,7 @@ namespace MonoGameEngine.src.Engine
 		{
 			if (Bounds().Intersects(new Rectangle(InputManager.getMouseCoordinates().ToPoint(), new Point(1, 1))))
 			{
-				//drawMask = true;
+				drawMask = true;
 				if (InputManager.isMouseButtonPressed(MOUSE_BUTTON.LEFT))
 				{
 					onClick();
@@ -45,7 +45,7 @@ namespace MonoGameEngine.src.Engine
 		{
 			base.Draw();
 
-			if (drawMask)
+			if (drawMask && mask != null)
 			{
 				Texture2D temp = Texture;
 				Texture = mask;

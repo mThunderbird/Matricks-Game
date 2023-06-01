@@ -19,8 +19,9 @@ namespace MonoGameEngine.src.prefabs
 
         Vector2 position;
 
-        Texture2D gridTileA;
-        Texture2D gridTileB;
+        List<Texture2D> gridTileMainTextures;
+        List<Texture2D> gridTileSecondaryTextures;
+
         Texture2D gridMaskCross;
         Texture2D gridMaskPoint;
         Texture2D gridMaskHover;
@@ -33,8 +34,16 @@ namespace MonoGameEngine.src.prefabs
 
         public Grid(Vector2 _dimensions)
         {
-            gridTileA = Config.Instance.gridTileA;
-            gridTileB = Config.Instance.gridTileB;
+            gridTileMainTextures = new List<Texture2D>();
+            gridTileMainTextures.Add(Config.Instance.gridTile1);
+            gridTileMainTextures.Add(Config.Instance.gridTile2);
+
+            gridTileSecondaryTextures = new List<Texture2D>();
+            gridTileSecondaryTextures.Add(Config.Instance.gridTile2Part);
+            gridTileSecondaryTextures.Add(Config.Instance.gridTileBolts);
+            gridTileSecondaryTextures.Add(Config.Instance.gridTileLines);
+            gridTileSecondaryTextures.Add(Config.Instance.gridTileBroken);
+
             gridMaskCross = Config.Instance.gridMaskCross;
             gridMaskPoint = Config.Instance.gridMaskPoint;
             gridMaskHover = Config.Instance.gridMaskHover;
@@ -81,16 +90,14 @@ namespace MonoGameEngine.src.prefabs
                     GridTile temp = new GridTile();
                     temp.mPosition = new Vector2(position.X + j * tileSize, position.Y + i * tileSize);
                     temp.mDimensions = new Vector2(tileSize, tileSize);
-                    if (i % 2 == 0)
+
+                    int rand = new Random().Next(0, gridTileMainTextures.Count + 1);
+                    if (rand >= gridTileMainTextures.Count)
                     {
-                        if (j % 2 == 0) temp.Texture = gridTileA;
-                        else temp.Texture = gridTileB;
+                        temp.Texture = gridTileSecondaryTextures[new Random().Next(0, gridTileSecondaryTextures.Count)];
                     }
-                    else
-                    {
-                        if (j % 2 == 0) temp.Texture = gridTileB;
-                        else temp.Texture = gridTileA;
-                    }
+                    else temp.Texture = gridTileMainTextures[rand];
+
                     matrix[i].Add(temp);
                 }
             }
@@ -125,7 +132,7 @@ namespace MonoGameEngine.src.prefabs
 
     }
 
-    internal class GridTile : Drawable
+    internal class GridTile : DrawableRotated
     {
         Texture2D mask;
         public GridTile() 

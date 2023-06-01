@@ -13,11 +13,30 @@ namespace MonoGameEngine.src.Game.States
     {
         public GamePlay() { }
 
-        private Grid grid;
+        Drawable background;
+        Grid grid;
+
+        Button exitButton;
+        Button backButton;
 
         public override void Init()
         {
             base.Init();
+
+            background = new Drawable();
+            background.Texture = Config.Instance.background;
+            background.mPosition = new Vector2(0, 0);
+            background.mDimensions = new Vector2(1920, 1080);
+
+            exitButton = new Button(() => Game1.end = true);
+            exitButton.Texture = Config.Instance.exitButton;
+            exitButton.mPosition = new Vector2(1770, 50);
+            exitButton.mDimensions = new Vector2(100, 100);
+
+            backButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.MENU));
+            backButton.Texture = Config.Instance.backButton;
+            backButton.mPosition = new Vector2(50, 50);
+            backButton.mDimensions = new Vector2(100, 100);
 
             grid = new Grid(new Vector2(8, 8));
         }
@@ -26,12 +45,17 @@ namespace MonoGameEngine.src.Game.States
         {
             base.Update();
             grid.update();
+            backButton.update();
+            exitButton.update();
         }
 
         public override void Draw()
         {
             base.Draw();
+            background.Draw();
             grid.draw();
+            backButton.Draw();
+            exitButton.Draw();
         }
 
     }

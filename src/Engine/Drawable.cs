@@ -31,7 +31,7 @@ namespace MonoGameEngine.src.Engine
 
         public Rectangle Bounds()
         {
-            return new Rectangle((int)(mPosition.X - mOrigin.X), (int)(mPosition.Y-mOrigin.Y), (int)mDimensions.X, (int)mDimensions.Y);
+            return new Rectangle((int)(mPosition.X - mOrigin.X), (int)(mPosition.Y - mOrigin.Y), (int)mDimensions.X, (int)mDimensions.Y);
         }
 
         public virtual void Draw()

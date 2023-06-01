@@ -15,6 +15,7 @@ namespace MonoGameEngine
         public static int WINDOW_HEIGHT = 1080;
         public static GameTime curr_time;
         public static double delta_time;
+        public static bool end = false;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -69,7 +70,7 @@ namespace MonoGameEngine
             delta_time = gameTime.ElapsedGameTime.TotalMilliseconds/1000;
             curr_time = gameTime;
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (end || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here

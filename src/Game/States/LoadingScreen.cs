@@ -12,8 +12,9 @@ namespace MonoGameEngine.src.Engine.States
 {
     internal class LoadingScreen : State
     {
-        Drawable mLogo;
-        Drawable mText;
+        Drawable logo;
+        Drawable text;
+        Drawable background;
         public LoadingScreen()
         {
 
@@ -21,17 +22,20 @@ namespace MonoGameEngine.src.Engine.States
 
         public override void Init()
         {
-            mLogo = new Drawable();
-            mLogo.Texture = Config.Instance.logo;
-            mLogo.mPosition = new Vector2(Game1.WINDOW_WIDTH / 2, Game1.WINDOW_HEIGHT / 2);
-            mLogo.mDimensions = new Vector2(500, 500);
-            mLogo.mOrigin = mLogo.mDimensions / 2;
+            background = new Drawable();
+            background.Texture = Config.Instance.background;
+            background.mPosition = new Vector2(0, 0);
+            background.mDimensions = new Vector2(1920, 1080);
 
-            mText = new Drawable();
-            mText.Texture = Config.Instance.pressSpaceTexture;
-            mText.mPosition = new Vector2(Game1.WINDOW_WIDTH / 2, Game1.WINDOW_HEIGHT - 200);
-            mText.mDimensions = new Vector2(1000, 100);
-            mText.mOrigin = mText.mDimensions / 2;
+            logo = new Drawable();
+            logo.Texture = Config.Instance.logo;
+            logo.mPosition = new Vector2(545, 75);
+            logo.mDimensions = new Vector2(830, 735);
+
+            text = new Drawable();
+            text.Texture = Config.Instance.pressSpaceTexture;
+            text.mPosition = new Vector2(600, 1000);
+            text.mDimensions = new Vector2(720, 35); 
         }
 
         public override void Update()
@@ -48,8 +52,9 @@ namespace MonoGameEngine.src.Engine.States
         public override void Draw()
         {
             base.Draw();
-            mLogo.Draw();
-            mText.Draw();
+            background.Draw();
+            logo.Draw();
+            text.Draw();
         }
 
         public override void Dispose()

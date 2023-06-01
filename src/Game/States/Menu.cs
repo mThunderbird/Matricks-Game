@@ -13,9 +13,12 @@ namespace MonoGameEngine.src.Engine.States
 {
     internal class Menu : State
     {
+        Drawable background;
         Drawable gameBanner;
         Button playButton;
         Button settingsButton;
+        Button exitButton;
+
         public Menu()
         {
 
@@ -23,28 +26,37 @@ namespace MonoGameEngine.src.Engine.States
 
         public override void Init()
         {
+            background = new Drawable();
+            background.Texture = Config.Instance.background;
+            background.mPosition = new Vector2(0, 0);
+            background.mDimensions = new Vector2(1920, 1080);
+
             gameBanner = new Drawable();
             gameBanner.Texture = Config.Instance.gameBanner;
-            gameBanner.mDimensions = new Vector2(1000, 350);
-            gameBanner.mPosition = new Vector2(Game1.WINDOW_WIDTH / 2, 250);
-            gameBanner.mOrigin = gameBanner.mDimensions / 2;
+            gameBanner.mPosition = new Vector2(260, 150);
+            gameBanner.mDimensions = new Vector2(1400, 600);
 
             playButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.GAME_MODE_1));
             playButton.Texture = Config.Instance.playButton;
+            playButton.mPosition = new Vector2(260, 820);
             playButton.mDimensions = new Vector2(540, 160);
-            playButton.mPosition = new Vector2(150, 800);
 
             settingsButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.SETTINGS));
             settingsButton.Texture = Config.Instance.settingsButton;
+            settingsButton.mPosition = new Vector2(1120, 820);
             settingsButton.mDimensions = new Vector2(540, 160);
-            settingsButton.mPosition = new Vector2(1230, 800);
 
+            exitButton = new Button(() => Game1.end = true);
+            exitButton.Texture = Config.Instance.exitButton;
+            exitButton.mPosition = new Vector2(1770, 50);
+            exitButton.mDimensions = new Vector2(100, 100);
         }
 
         public override void Update()
         {
             playButton.update();
             settingsButton.update();
+            exitButton.update();
 
             base.Update();
         }
@@ -52,9 +64,12 @@ namespace MonoGameEngine.src.Engine.States
         public override void Draw()
         {
             base.Draw();
+
+            background.Draw();
             gameBanner.Draw();
             playButton.Draw();
             settingsButton.Draw();
+            exitButton.Draw();
         }
 
         public override void Dispose()
