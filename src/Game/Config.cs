@@ -29,6 +29,11 @@ internal sealed class Config
 
     public Texture2D logo;
     public SpriteFont font1;
+    public Texture2D pressSpaceTexture;
+
+    public Texture2D playButton;
+    public Texture2D settingsButton;
+    public Texture2D exitButton;
 
     public Texture2D gridTileA;
     public Texture2D gridTileB;
@@ -42,6 +47,11 @@ internal sealed class Config
 
         logo = loadTexture2D("cool_graphics/kiroIdrago");
         font1 = loadFont("UI/fonts/File");
+        pressSpaceTexture = loadTexture2D("UI/PRESS_SPACE_TO_CONTINUE");
+
+        playButton = loadTexture2D("UI/playButton");
+        settingsButton = loadTexture2D("UI/settingsButton");
+        exitButton = loadTexture2D("UI/exitButton");
 
         gridTileA = loadTexture2D("grid/tile_brown");
         gridTileB = loadTexture2D("grid/tile_white");

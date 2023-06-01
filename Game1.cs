@@ -79,7 +79,7 @@ namespace MonoGameEngine
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Bisque);
+            GraphicsDevice.Clear(Color.BlanchedAlmond);
 
             // TODO: Add your drawing code here
             Render.Begin();
