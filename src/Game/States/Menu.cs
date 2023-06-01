@@ -14,8 +14,8 @@ namespace MonoGameEngine.src.Engine.States
     internal class Menu : State
     {
         Drawable gameBanner;
-        Drawable playButton;
-        Drawable settingsButton;
+        Button playButton;
+        Button settingsButton;
         public Menu()
         {
 
@@ -29,12 +29,12 @@ namespace MonoGameEngine.src.Engine.States
             gameBanner.mPosition = new Vector2(Game1.WINDOW_WIDTH / 2, 250);
             gameBanner.mOrigin = gameBanner.mDimensions / 2;
 
-            playButton = new Drawable();
+            playButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.GAME_MODE_1));
             playButton.Texture = Config.Instance.playButton;
             playButton.mDimensions = new Vector2(540, 160);
             playButton.mPosition = new Vector2(150, 800);
 
-            settingsButton = new Drawable();
+            settingsButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.SETTINGS));
             settingsButton.Texture = Config.Instance.settingsButton;
             settingsButton.mDimensions = new Vector2(540, 160);
             settingsButton.mPosition = new Vector2(1230, 800);
@@ -43,8 +43,8 @@ namespace MonoGameEngine.src.Engine.States
 
         public override void Update()
         {
-            if (InputManager.eventIsKeyReleased(Keys.Space))
-                StateManager.Instance.SwitchState(GAME_STATE.GAME_MODE_1);
+            playButton.update();
+            settingsButton.update();
 
             base.Update();
         }
