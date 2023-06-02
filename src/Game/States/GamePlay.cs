@@ -19,6 +19,9 @@ namespace MonoGameEngine.src.Game.States
         Button exitButton;
         Button backButton;
 
+        Player player1;
+        Player player2;
+
         public override void Init()
         {
             base.Init();

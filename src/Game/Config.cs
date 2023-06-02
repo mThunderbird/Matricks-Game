@@ -50,9 +50,9 @@ internal sealed class Config
     public Texture2D gridTile2Part;
     public Texture2D gridMaskCross;
     public Texture2D gridMaskPoint;
-    public Texture2D gridMaskHover;
+    public Texture2D maskHover;
 
-    public void Initv2(ContentManager c)
+    /*public void Initv2(ContentManager c)
     {
         TEXTURE_NOT_FOUND = c.Load<Texture2D>("NOT_FOUND");
 
@@ -77,8 +77,8 @@ internal sealed class Config
 
         gridMaskCross = c.Load<Texture2D>("grid/cross");
         gridMaskPoint = c.Load<Texture2D>("grid/point");
-        gridMaskHover = c.Load<Texture2D>("grid/hover");
-    }
+        maskHover = c.Load<Texture2D>("grid/hoverMask");
+    }*/
     public void Init(Func<string, Texture2D> loadTexture2D, Func<string, SpriteFont> loadFont, Func<string, Song> loadSong, Func<string, SoundEffect> loadSound)
     {
         introSong = loadSong("sounds/MenInBlackTheme");
@@ -106,7 +106,7 @@ internal sealed class Config
 
         gridMaskCross = loadTexture2D("grid/cross");
         gridMaskPoint = loadTexture2D("grid/point");
-        gridMaskHover = loadTexture2D("grid/hover");
+        maskHover = loadTexture2D("UI/hoverMask");
 
     }
 }

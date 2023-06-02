@@ -46,7 +46,7 @@ namespace MonoGameEngine.src.prefabs
 
             gridMaskCross = Config.Instance.gridMaskCross;
             gridMaskPoint = Config.Instance.gridMaskPoint;
-            gridMaskHover = Config.Instance.gridMaskHover;
+            gridMaskHover = Config.Instance.maskHover;
 
             createMatrix(_dimensions);
 

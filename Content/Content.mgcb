@@ -157,6 +157,18 @@
 /processorParam:TextureFormat=Color
 /build:UI/gameBanner.png
 
+#begin UI/HoverMask.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/HoverMask.png;UI/hoverMask.png
+
 #begin UI/logo.png
 /importer:TextureImporter
 /processor:TextureProcessor

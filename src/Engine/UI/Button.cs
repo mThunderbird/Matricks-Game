@@ -4,21 +4,23 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using MonoGameEngine.src;
 using MonoGameEngine.src.Engine;
+using MonoGameEngine.src.Game;
 using System;
 
 namespace MonoGameEngine.src.Engine
 {
 	internal class Button : Drawable
 	{
-		Texture2D mask;
+		Drawable mask = new Drawable();
 		private bool drawMask = false;
 		Action func;
 		SoundEffect soundEffect;
 		public Button(Action _func) 
 		{ 
 			this.func = _func;
+			mask = this;
+			mask.Texture = Config.Instance.maskHover;
 		}
-		public Button(Texture2D _mask) { setMask(_mask); }
 		public void update()
 		{
 			if (Bounds().Intersects(new Rectangle(InputManager.getMouseCoordinates().ToPoint(), new Point(1, 1))))
@@ -39,10 +41,6 @@ namespace MonoGameEngine.src.Engine
 			func();
 			SoundPlayer.playSound(soundEffect);
 		}
-		internal void setMask(Texture2D _mask)
-		{
-			mask = _mask;
-		}
 
 		public void setSoundEff(SoundEffect _eff)
         {
@@ -53,13 +51,7 @@ namespace MonoGameEngine.src.Engine
 		{
 			base.Draw();
 
-			if (drawMask && mask != null)
-			{
-				Texture2D temp = Texture;
-				Texture = mask;
-				Render.Draw(this);
-				Texture = temp;
-			}
+			if (drawMask) mask.Draw();
 
 		}
 	}
