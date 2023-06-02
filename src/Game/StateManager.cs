@@ -50,6 +50,7 @@ namespace MonoGameEngine.src.Game
     {
         LOADING_SCREEN,
         MENU,
+        MODE_SELECT,
         SETTINGS,
         GAME_MODE_1,
         END_SCREEN_1

@@ -15,7 +15,6 @@ internal sealed class Config
     // not to mark type as beforefieldinit
     static Config()
     {
-
     }
     private Config()
     {
@@ -39,6 +38,7 @@ internal sealed class Config
     public Texture2D playButton;
     public Texture2D settingsButton;
     public Texture2D exitButton;
+    public Texture2D hoverMask;
     public Texture2D gameBanner;
 
     public Texture2D backButton;
@@ -95,6 +95,7 @@ internal sealed class Config
         playButton = loadTexture2D("UI/playButton");
         settingsButton = loadTexture2D("UI/settingsButton");
         exitButton = loadTexture2D("UI/exitButton");
+        hoverMask = loadTexture2D("UI/hoverMask");
 
         backButton = loadTexture2D("UI/backButton");
         gridTile1 = loadTexture2D("grid/gridTile1");
