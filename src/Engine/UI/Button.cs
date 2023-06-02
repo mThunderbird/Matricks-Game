@@ -18,8 +18,7 @@ namespace MonoGameEngine.src.Engine
 		public Button(Action _func) 
 		{ 
 			this.func = _func;
-			mask = this;
-			mask.Texture = Config.Instance.maskHover;
+			mask = Config.Instance.hoverMask;
 		}
 		public void update()
 		{
@@ -51,7 +50,13 @@ namespace MonoGameEngine.src.Engine
 		{
 			base.Draw();
 
-			if (drawMask) mask.Draw();
+			if (drawMask && mask != null)
+			{
+				Texture2D temp = Texture;
+				Texture = mask;
+				Render.Draw(this);
+				Texture = temp;
+			}
 
 		}
 	}

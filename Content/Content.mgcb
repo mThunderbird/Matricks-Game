@@ -121,6 +121,30 @@
 /processorParam:Quality=Best
 /build:sounds/MenInBlackTheme.mp3
 
+#begin UI/1PlayerMode.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/1PlayerMode.png
+
+#begin UI/2PlayerMode.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/2PlayerMode.png
+
 #begin UI/backButton.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -157,7 +181,7 @@
 /processorParam:TextureFormat=Color
 /build:UI/gameBanner.png
 
-#begin UI/HoverMask.png
+#begin UI/hoverMask.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -167,7 +191,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:UI/HoverMask.png;UI/hoverMask.png
+/build:UI/hoverMask.png
 
 #begin UI/logo.png
 /importer:TextureImporter

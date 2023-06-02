@@ -110,10 +110,10 @@ namespace MonoGameEngine.src.prefabs
                 for (int j = 0; j < dimensions.Y; j++)
                 {
                     if (matrix[i][j].Bounds().Intersects(new Rectangle(InputManager.getMouseCoordinates().ToPoint(), new Point(1, 1)))) {
-                        matrix[i][j].setMask(gridMaskHover);
+                        matrix[i][j].drawMask = true;
 					} else
 					{
-                        matrix[i][j].setMask(null);
+                        matrix[i][j].drawMask = false;
                     }
                 }
             }
@@ -135,21 +135,17 @@ namespace MonoGameEngine.src.prefabs
     internal class GridTile : DrawableRotated
     {
         Texture2D mask;
+        public bool drawMask = false;
         public GridTile() 
         {
-
-        }
-
-        internal void setMask(Texture2D _mask)
-        {
-            mask = _mask;
+            mask = Config.Instance.hoverMask;
         }
 
         public override void Draw()
         {
             base.Draw();
 
-            if(mask != null)
+            if(drawMask)
             {
                 Texture2D temp = Texture;
                 Texture = mask;
