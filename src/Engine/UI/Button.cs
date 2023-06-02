@@ -11,7 +11,7 @@ namespace MonoGameEngine.src.Engine
 {
 	internal class Button : Drawable
 	{
-		Drawable mask = new Drawable();
+		Texture2D mask;
 		private bool drawMask = false;
 		Action func;
 		SoundEffect soundEffect;

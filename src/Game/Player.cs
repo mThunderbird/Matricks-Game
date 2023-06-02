@@ -4,15 +4,20 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using MonoGameEngine.src;
 using MonoGameEngine.src.Engine;
+using MonoGameEngine.src.Game.States;
 using System;
 
 namespace MonoGameEngine.src.Game
 {
 	internal class Player
 	{
-		public void playTurn()
+		public void waitForAction()
 		{
 
+		}
+		public void playTurn()
+		{
+			GamePlay.switchTurn();
 		}
 	}
 }
