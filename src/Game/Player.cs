@@ -11,13 +11,23 @@ namespace MonoGameEngine.src.Game
 {
 	internal class Player
 	{
-		public void waitForAction()
+		public Drawable body = new Drawable();
+		int index = 0;
+		public Vector2 coordinatesInGrid = new Vector2(1, 1);
+		public bool isSelected = false;
+		public int possibleMoves = -1;
+		public Player(int _index)
 		{
-
+			index = _index;
+			body.Texture = Config.Instance.character1;
+			if (index == 1) {
+				coordinatesInGrid = new Vector2(GamePlay.gridDimensions.X - 1, GamePlay.gridDimensions.Y - 1);
+				body.Texture = Config.Instance.character2;
+			}
 		}
-		public void playTurn()
+		public void draw()
 		{
-			GamePlay.switchTurn();
+			body.Draw();
 		}
 	}
 }
