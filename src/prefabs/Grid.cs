@@ -88,8 +88,8 @@ namespace MonoGameEngine.src.prefabs
                 for (int j = 0; j < dimensions.Y; j++)
                 {
                     GridTile temp = new GridTile();
-                    temp.mPosition = new Vector2(position.X + j * tileSize, position.Y + i * tileSize);
-                    temp.mDimensions = new Vector2(tileSize, tileSize);
+                    temp.position = new Vector2(position.X + j * tileSize, position.Y + i * tileSize);
+                    temp.dimensions = new Vector2(tileSize, tileSize);
 
                     temp.Texture = Config.Instance.gridTile1;
 
@@ -174,9 +174,11 @@ namespace MonoGameEngine.src.prefabs
                 {
                     matrix[i][j].isHovered = false;
 
-                    if (matrix[i][j].isEnabled)
+                    if (matrix[i][j].Bounds().Intersects(new Rectangle(InputManager.getMouseCoordinates().ToPoint(), new Point(1, 1))))
                     {
-                        if (matrix[i][j].Bounds().Intersects(new Rectangle(InputManager.getMouseCoordinates().ToPoint(), new Point(1, 1))))
+                        if (matrix[i][j].isEnabled || 
+                            (players[GamePlay.onTurn].coordinatesInGrid.X == i &&
+                            players[GamePlay.onTurn].coordinatesInGrid.Y == j))
                         {
                             matrix[i][j].isHovered = true;
                             //if (click) showPossMoves ; if (showing moves) if (click na sebe si){ stop showing }else{ move player GamePlay.switchTurn();}
@@ -206,10 +208,10 @@ namespace MonoGameEngine.src.prefabs
                                 }
                             }
                         }
-                    }
-                    else
-                    {
-                        matrix[i][j].isHighlighted = false;
+                        else
+                        {
+                            matrix[i][j].isHighlighted = false;
+                        }
                     }
                 }
             }
@@ -228,8 +230,8 @@ namespace MonoGameEngine.src.prefabs
             }
             for (int i = 0; i < 2; i++)
             {
-                players[i].body.mPosition = matrix[(int)players[i].coordinatesInGrid.X][(int)players[i].coordinatesInGrid.Y].mPosition;
-                players[i].body.mDimensions = new Vector2(tileSize, tileSize);
+                players[i].body.position = matrix[(int)players[i].coordinatesInGrid.X][(int)players[i].coordinatesInGrid.Y].position;
+                players[i].body.dimensions = new Vector2(tileSize, tileSize);
             }
         }
 
@@ -251,6 +253,8 @@ namespace MonoGameEngine.src.prefabs
             int currentPlayerY = (int)players[GamePlay.onTurn].coordinatesInGrid.Y;
             matrix[currentPlayerX][currentPlayerY].owner = GamePlay.onTurn;
             matrix[currentPlayerX][currentPlayerY].isEnabled = false;
+            matrix[(int)newCoordinates.X][(int)newCoordinates.Y].owner = GamePlay.onTurn;
+            matrix[(int)newCoordinates.X][(int)newCoordinates.Y].isEnabled = false;
             players[GamePlay.onTurn].coordinatesInGrid = newCoordinates;
             players[GamePlay.onTurn].isSelected = false;
             GamePlay.switchTurn();

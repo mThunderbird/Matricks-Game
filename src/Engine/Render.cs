@@ -23,7 +23,7 @@ namespace MonoGameEngine.src.Engine
 
         public static void Draw(DrawableRotated _drawable)
         {
-            spriteBatch.Draw(_drawable.Texture, _drawable.Bounds(), null, _drawable.mColor, _drawable.mRotation, Vector2.Zero, SpriteEffects.None, 0);
+            spriteBatch.Draw(_drawable.Texture, _drawable.Bounds(), null, _drawable.mColor, _drawable.rotation, Vector2.Zero, SpriteEffects.None, 0);
         }
 
         public static void drawString(SpriteFont _font, string _text, Rectangle _rect, Color _color)

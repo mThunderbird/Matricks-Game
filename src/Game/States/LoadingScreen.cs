@@ -24,18 +24,18 @@ namespace MonoGameEngine.src.Engine.States
         {
             background = new Drawable();
             background.Texture = Config.Instance.background;
-            background.mPosition = new Vector2(0, 0);
-            background.mDimensions = new Vector2(1920, 1080);
+            background.position = new Vector2(0, 0);
+            background.dimensions = new Vector2(1920, 1080);
 
             logo = new Drawable();
             logo.Texture = Config.Instance.logo;
-            logo.mPosition = new Vector2(545, 75);
-            logo.mDimensions = new Vector2(830, 735);
+            logo.position = new Vector2(545, 75);
+            logo.dimensions = new Vector2(830, 735);
 
             text = new Drawable();
             text.Texture = Config.Instance.pressSpaceTexture;
-            text.mPosition = new Vector2(600, 1000);
-            text.mDimensions = new Vector2(720, 35);
+            text.position = new Vector2(600, 1000);
+            text.dimensions = new Vector2(720, 35);
 
             SoundPlayer.playSong(Config.Instance.introSong, 0.2f);
         }

@@ -9,20 +9,20 @@ namespace MonoGameEngine.src.Engine
     {
         public Drawable() { }
 
-        public Vector2 mPosition;
-        public Vector2 mDimensions = Vector2.Zero;
-        protected Texture2D mTexture;
-        public Vector2 mOrigin = Vector2.Zero;      // point from which the texture is rendered
+        public Vector2 position;
+        public Vector2 dimensions = Vector2.Zero;
+        protected Texture2D texture;
+        public Vector2 origin = Vector2.Zero;      // point from which the texture is rendered
         public Texture2D Texture
         {
-            get { return mTexture; }
+            get { return texture; }
             set
             {
-                mTexture = value;
-                if (mDimensions == Vector2.Zero && value != null)
+                texture = value;
+                if (dimensions == Vector2.Zero && value != null)
                 {
-                    mDimensions.X = value.Width;
-                    mDimensions.Y = value.Height;
+                    dimensions.X = value.Width;
+                    dimensions.Y = value.Height;
                 }
             }
         }
@@ -31,7 +31,7 @@ namespace MonoGameEngine.src.Engine
 
         public Rectangle Bounds()
         {
-            return new Rectangle((int)(mPosition.X - mOrigin.X), (int)(mPosition.Y - mOrigin.Y), (int)mDimensions.X, (int)mDimensions.Y);
+            return new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)dimensions.X, (int)dimensions.Y);
         }
 
         public virtual void Draw()
@@ -45,7 +45,7 @@ namespace MonoGameEngine.src.Engine
     {
         public DrawableRotated() { }
 
-        public Single mRotation;
+        public Single rotation;
         public override void Draw()
         {
             Render.Draw(this);
