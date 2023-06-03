@@ -34,14 +34,8 @@ namespace MonoGameEngine.src.Engine
             Vector2 realDim = _font.MeasureString(_text);
             realDim *= koef;
 
-            try
-            {
-                spriteBatch.DrawString(_font, _text, new Vector2(_rect.X + _rect.Width/2 - realDim.X/2, _rect.Y + _rect.Height/2 - realDim.Y/2), _color, 0, Vector2.Zero, koef, SpriteEffects.None, 0);
-            }
-            catch (Exception)
-            {
+            spriteBatch.DrawString(_font, _text, new Vector2(_rect.X + _rect.Width/2 - realDim.X/2, _rect.Y + _rect.Height/2 - realDim.Y/2), _color, 0, Vector2.Zero, koef, SpriteEffects.None, 0);
 
-            }
         }
     }
 }
