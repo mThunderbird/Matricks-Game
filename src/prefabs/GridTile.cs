@@ -11,35 +11,45 @@ namespace MonoGameEngine.src.prefabs
 {
     internal class GridTile : Drawable
     {
-        Texture2D mask;
-        public bool drawMask = false;
+        Texture2D hMask;
+        Texture2D disabledMask1;
+        Texture2D disabledMask2;
+        public bool isHovered = false;
+        public bool isHighlighted = false;
+        public bool isEnabled = true;
+        public int owner;
         Operation operation;
-
-        bool isTaken = false;
-
         public GridTile()
         {
-            mask = Config.Instance.hoverMask;
+            hMask = Config.Instance.hoverMask;
+            disabledMask1 = Config.Instance.disabledMask1;
+            disabledMask2 = Config.Instance.disabledMask2;
+        }
+
+        public void update()
+        {
+
         }
 
         public override void Draw()
         {
             base.Draw();
-
-            if (drawMask)
-            {
-                Texture2D temp = Texture;
-                Texture = mask;
-                Render.Draw(this);
-                Texture = temp;
-            }
-
-            if(!isTaken)
-            {
-                operation.draw();
-            }
+            if (isHighlighted || isHovered || !isEnabled) drawMask();
+            if (isEnabled) operation.draw();
         }
 
+        public void drawMask()
+        {
+            Texture2D temp = Texture;
+            Texture = hMask;
+            if (!isEnabled)
+            {
+                Texture = disabledMask1;
+                if (owner == 1) Texture = disabledMask2;
+            }
+            Render.Draw(this);
+            Texture = temp;
+        }
         public void setOperation(Operation operation)
         {
             this.operation = operation;

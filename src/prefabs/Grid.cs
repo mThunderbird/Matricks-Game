@@ -244,6 +244,7 @@ namespace MonoGameEngine.src.prefabs
         {
             int currentPlayerX = (int)players[GamePlay.onTurn].coordinatesInGrid.X;
             int currentPlayerY = (int)players[GamePlay.onTurn].coordinatesInGrid.Y;
+            matrix[currentPlayerX][currentPlayerY].owner = GamePlay.onTurn;
             matrix[currentPlayerX][currentPlayerY].isEnabled = false;
             players[GamePlay.onTurn].coordinatesInGrid = newCoordinates;
             players[GamePlay.onTurn].isSelected = false;
@@ -251,6 +252,7 @@ namespace MonoGameEngine.src.prefabs
         }
         public void highlightPossibleMoves()
 		{
+            players[GamePlay.onTurn].possibleMoves = 0;
             int currentPlayerX = (int)players[GamePlay.onTurn].coordinatesInGrid.X;
             int currentPlayerY = (int)players[GamePlay.onTurn].coordinatesInGrid.Y;
             for (int i = currentPlayerX - 1; i <= currentPlayerX + 1; i++) {
@@ -258,44 +260,14 @@ namespace MonoGameEngine.src.prefabs
                 {
                     if (i >= 0 && i < GamePlay.gridDimensions.X && j >= 0 && j < GamePlay.gridDimensions.Y)
 					{
-                        if (matrix[i][j].isEnabled) matrix[i][j].isHighlighted = true;
+                        if (matrix[i][j].isEnabled)
+                        {
+                            matrix[i][j].isHighlighted = true;
+                            players[GamePlay.onTurn].possibleMoves++;
+                        }
                     }
                 }
             }
 		}
-    }
-
-    internal class GridTile : Drawable
-    {
-        Texture2D hMask;
-        Texture2D disabledMask;
-        public bool isHovered = false;
-        public bool isHighlighted = false;
-        public bool isEnabled = true;
-        public GridTile() 
-        {
-            hMask = Config.Instance.hoverMask;
-            disabledMask = Config.Instance.gridTile2;
-        }
-
-        public void update()
-        {
-
-        }
-
-        public override void Draw()
-        {
-            base.Draw();
-            if (isHighlighted || isHovered || !isEnabled) drawMask();
-        }
-
-        public void drawMask()
-        {
-            Texture2D temp = Texture;
-            Texture = hMask;
-            if (!isEnabled) Texture = disabledMask;
-            Render.Draw(this);
-            Texture = temp;
-        }
     }
 }
