@@ -81,10 +81,10 @@ namespace MonoGameEngine.src.prefabs
 
     internal class OperationDivide : Operation
     {
-        public OperationDivide() 
+        public OperationDivide()
         {
             sign = ":";
-        }    
+        }
         public override void execute(Player _player)
         {
             _player.points /= value;

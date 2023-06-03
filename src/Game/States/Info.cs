@@ -11,15 +11,14 @@ using MonoGameEngine.src.Game;
 
 namespace MonoGameEngine.src.Engine.States
 {
-    internal class Menu : State
+    internal class Info : State
     {
         Drawable background;
-        Drawable gameBanner;
-        Button playButton;
-        Button settingsButton;
+        Button backButton;
         Button exitButton;
+        Drawable info;
 
-        public Menu()
+        public Info()
         {
 
         }
@@ -31,34 +30,27 @@ namespace MonoGameEngine.src.Engine.States
             background.position = new Vector2(0, 0);
             background.dimensions = new Vector2(1920, 1080);
 
-            gameBanner = new Drawable();
-            gameBanner.Texture = Config.Instance.gameBanner;
-            gameBanner.position = new Vector2(260, 150);
-            gameBanner.dimensions = new Vector2(1400, 600);
-
-            playButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.MODE_SELECT));
-            playButton.Texture = Config.Instance.playButton;
-            playButton.position = new Vector2(260, 820);
-            playButton.dimensions = new Vector2(540, 160);
-            playButton.setSoundEff(Config.Instance.clickSound);
-
-            settingsButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.INFO));
-            settingsButton.Texture = Config.Instance.settingsButton;
-            settingsButton.position = new Vector2(1120, 820);
-            settingsButton.dimensions = new Vector2(540, 160);
-            settingsButton.setSoundEff(Config.Instance.clickSound);
-
             exitButton = new Button(() => Game1.end = true);
             exitButton.Texture = Config.Instance.exitButton;
             exitButton.position = new Vector2(1770, 50);
             exitButton.dimensions = new Vector2(100, 100);
             exitButton.setSoundEff(Config.Instance.clickSound);
+
+            backButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.MENU));
+            backButton.Texture = Config.Instance.backButton;
+            backButton.position = new Vector2(50, 50);
+            backButton.dimensions = new Vector2(100, 100);
+            backButton.setSoundEff(Config.Instance.clickSound);
+
+            info = new Drawable();
+            info.Texture = Config.Instance.info;
+            info.position = new Vector2(260, 140);
+            info.dimensions = new Vector2(1400, 800);
         }
 
         public override void Update()
         {
-            playButton.update();
-            settingsButton.update();
+            backButton.update();
             exitButton.update();
 
             base.Update();
@@ -69,10 +61,9 @@ namespace MonoGameEngine.src.Engine.States
             base.Draw();
 
             background.Draw();
-            gameBanner.Draw();
-            playButton.Draw();
-            settingsButton.Draw();
             exitButton.Draw();
+            backButton.Draw();
+            info.Draw();
         }
 
         public override void Dispose()
@@ -81,3 +72,4 @@ namespace MonoGameEngine.src.Engine.States
         }
     }
 }
+

@@ -28,6 +28,7 @@ internal sealed class Config
     public Song introSong;
     public SoundEffect clickSound;
     public SpriteFont arialFont;
+    public Texture2D info;
     
     public Texture2D TEXTURE_NOT_FOUND;
 
@@ -66,6 +67,7 @@ internal sealed class Config
         introSong = loadSong("sounds/MenInBlackTheme");
         clickSound = loadSound("sounds/clickSound");
         arialFont = loadFont("UI/arialFont");
+        info = loadTexture2D("info");
 
         TEXTURE_NOT_FOUND = loadTexture2D("NOT_FOUND");
 
@@ -78,8 +80,8 @@ internal sealed class Config
         playButton = loadTexture2D("UI/playButton");
         settingsButton = loadTexture2D("UI/settingsButton");
         exitButton = loadTexture2D("UI/exitButton");
-        singlePlayerButton = loadTexture2D("UI/1PlayerMode");
-        twoPlayerButton = loadTexture2D("UI/2PlayerMode");
+        singlePlayerButton = loadTexture2D("UI/1Player");
+        twoPlayerButton = loadTexture2D("UI/2Player");
         hoverMask = loadTexture2D("UI/hoverMask");
 
         backButton = loadTexture2D("UI/backButton");
