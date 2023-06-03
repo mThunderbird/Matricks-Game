@@ -11,7 +11,7 @@ namespace MonoGameEngine.src.prefabs
 {
     internal class Grid
     {
-        int maximumTileSize = 100;
+        int maximumTileSize = 200;
         int maximumGridWidth = 1000;
         int maximumGridHeight = 800;
 
@@ -78,7 +78,7 @@ namespace MonoGameEngine.src.prefabs
                     tileSize = (tileSize / 5) * 5;
                 }
             }
-            else { tileSize = 50; } 
+            else { tileSize = maximumTileSize; } 
             
             position.X = Game1.WINDOW_WIDTH / 2 - (dimensions.X) * tileSize / 2;
             position.Y = Game1.WINDOW_HEIGHT / 2 - (dimensions.Y) * tileSize / 2;

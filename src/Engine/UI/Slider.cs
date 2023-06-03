@@ -27,7 +27,7 @@ namespace MonoGameEngine.src.Engine.UI
 
 			knob = new Drawable();
 			knob.Texture = Config.Instance.sliderKnob;
-			knob.position = barPosition;
+			knob.position.X = knob.position.X = bar.position.X + ((resultValue - 4) * bar.dimensions.X) / (maxValue - minValue) - 30;
 			knob.position.Y = barPosition.Y - 15;
 			knob.dimensions = new Vector2(60, 60);
 			knob.origin = Vector2.Zero;
