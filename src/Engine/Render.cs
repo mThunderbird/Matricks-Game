@@ -16,14 +16,14 @@ namespace MonoGameEngine.src.Engine
         public static void Begin() => spriteBatch.Begin();
         public static void End() => spriteBatch.End();
 
-        public static void Draw(Drawable _drawable)
+        public static void draw(Drawable _Drawable)
         {
-            spriteBatch.Draw(_drawable.Texture, _drawable.Bounds(), null, _drawable.mColor, 0f, Vector2.Zero, SpriteEffects.None, 0);
+            spriteBatch.Draw(_Drawable.Texture, _Drawable.Bounds(), null, _Drawable.mColor, 0f, Vector2.Zero, SpriteEffects.None, 0);
         }
 
-        public static void Draw(DrawableRotated _drawable)
+        public static void draw(DrawableRotated _Drawable)
         {
-            spriteBatch.Draw(_drawable.Texture, _drawable.Bounds(), null, _drawable.mColor, _drawable.rotation, Vector2.Zero, SpriteEffects.None, 0);
+            spriteBatch.Draw(_Drawable.Texture, _Drawable.Bounds(), null, _Drawable.mColor, _Drawable.rotation, Vector2.Zero, SpriteEffects.None, 0);
         }
 
         public static void drawString(SpriteFont _font, string _text, Rectangle _rect, Color _color)

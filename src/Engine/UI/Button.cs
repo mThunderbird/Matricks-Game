@@ -46,15 +46,15 @@ namespace MonoGameEngine.src.Engine
 			soundEffect = _eff;
         }
 
-		public override void Draw()
+		public override void draw()
 		{
-			base.Draw();
+			base.draw();
 
 			if (drawMask && mask != null)
 			{
 				Texture2D temp = Texture;
 				Texture = mask;
-				Render.Draw(this);
+				Render.draw(this);
 				Texture = temp;
 			}
 

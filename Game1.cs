@@ -117,7 +117,7 @@ namespace MonoGameEngine
             // TODO: Add your drawing code here
             Render.Begin();
 
-            StateManager.Instance.CurrentState.Draw();
+            StateManager.Instance.CurrentState.draw();
 
             Render.End();
 

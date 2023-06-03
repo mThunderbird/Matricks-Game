@@ -9,7 +9,7 @@
 
         public virtual void Init() { }
         public virtual void Update() { }
-        public virtual void Draw() { }
+        public virtual void draw() { }
         public virtual void Dispose() { }
 
 

@@ -16,6 +16,8 @@ namespace MonoGameEngine.src.Game.States
         Drawable background;
         Grid grid;
         public static Vector2 gridDimensions = new Vector2(8, 8);
+        public static int minGridSize = 4;
+        public static int maxGridSize = 16;
 
         Button exitButton;
         Button backButton;
@@ -55,13 +57,13 @@ namespace MonoGameEngine.src.Game.States
             exitButton.update();
         }
 
-        public override void Draw()
+        public override void draw()
         {
-            base.Draw();
-            background.Draw();
+            base.draw();
+            background.draw();
             grid.draw();
-            backButton.Draw();
-            exitButton.Draw();
+            backButton.draw();
+            exitButton.draw();
         }
 
         public static void switchTurn()

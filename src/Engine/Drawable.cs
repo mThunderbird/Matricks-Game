@@ -34,9 +34,9 @@ namespace MonoGameEngine.src.Engine
             return new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)dimensions.X, (int)dimensions.Y);
         }
 
-        public virtual void Draw()
+        public virtual void draw()
         {
-            Render.Draw(this);
+            Render.draw(this);
         }
 
     }
@@ -46,9 +46,9 @@ namespace MonoGameEngine.src.Engine
         public DrawableRotated() { }
 
         public Single rotation;
-        public override void Draw()
+        public override void draw()
         {
-            Render.Draw(this);
+            Render.draw(this);
         }
     }
 }
