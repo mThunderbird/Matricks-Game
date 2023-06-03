@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameEngine.src.Engine;
 using MonoGameEngine.src.Game;
+using MonoGameEngine.src.Game.States;
 
 namespace MonoGameEngine.src.prefabs
 {
@@ -22,17 +23,21 @@ namespace MonoGameEngine.src.prefabs
         List<Texture2D> gridTileMainTextures;
         List<Texture2D> gridTileSecondaryTextures;
 
-
         /// <summary>
-        ///  first [] contains index of row
-        ///  second [] contains index of collumn
+        ///  first [] contains index of collumn
+        ///  second [] contains index of row
         /// </summary>
         List<List<GridTile>> matrix;
-        List<Unit> units;
+
+        List<Player> players;
         public Grid(Vector2 _dimensions)
         {
             matrix = new List<List<GridTile>>();
-            units = new List<Unit>();
+
+            players = new List<Player>();
+
+            players.Add(new Player(0));
+            players.Add(new Player(1));
 
             gridTileMainTextures = new List<Texture2D>();
             gridTileMainTextures.Add(Config.Instance.gridTile1);
@@ -99,20 +104,71 @@ namespace MonoGameEngine.src.prefabs
         }
 
         public void update()
-		{
+        {
             for (int i = 0; i < dimensions.X; i++)
             {
                 for (int j = 0; j < dimensions.Y; j++)
                 {
-                    if (matrix[i][j].Bounds().Intersects(new Rectangle(InputManager.getMouseCoordinates().ToPoint(), new Point(1, 1)))) {
-                        matrix[i][j].drawMask = true;
-					} else
-					{
-                        matrix[i][j].drawMask = false;
+                    matrix[i][j].isHovered = false;
+
+                    if (matrix[i][j].isEnabled)
+                    {
+                        if (matrix[i][j].Bounds().Intersects(new Rectangle(InputManager.getMouseCoordinates().ToPoint(), new Point(1, 1))))
+                        {
+                            matrix[i][j].isHovered = true;
+                            //if (click) showPossMoves ; if (showing moves) if (click na sebe si){ stop showing }else{ move player GamePlay.switchTurn();}
+                            if (players[GamePlay.onTurn].coordinatesInGrid.X == i && 
+                                players[GamePlay.onTurn].coordinatesInGrid.Y == j)
+							{
+                                if (InputManager.eventIsMouseReleased())
+								{
+                                    players[GamePlay.onTurn].isSelected = true;
+								}
+							}
+
+                            if (matrix[i][j].isHighlighted)
+                            {
+                                bool isOccupied = false;
+                                for (int k = 0; k < 2; k++)
+								{
+                                    if (players[k].coordinatesInGrid.X == i && players[k].coordinatesInGrid.Y == j)
+                                    {
+                                        isOccupied = true;
+                                    }
+								}
+
+                                if (InputManager.eventIsMouseReleased() && !isOccupied)
+                                {
+                                    movePlayer(new Vector2(i, j));
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        matrix[i][j].isHighlighted = false;
                     }
                 }
             }
-		}
+            if (players[GamePlay.onTurn].isSelected)
+			{
+                highlightPossibleMoves();
+			} else
+			{
+                for (int i = 0; i < dimensions.X; i++)
+                {
+                    for (int j = 0; j < dimensions.Y; j++)
+                    {
+                        matrix[i][j].isHighlighted = false;
+                    }
+                }
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                players[i].body.mPosition = matrix[(int)players[i].coordinatesInGrid.X][(int)players[i].coordinatesInGrid.Y].mPosition;
+                players[i].body.mDimensions = new Vector2(tileSize, tileSize);
+            }
+        }
 
         public void draw()
         {
@@ -123,59 +179,65 @@ namespace MonoGameEngine.src.prefabs
                     matrix[i][j].Draw();
                 }
             }
+            for (int i = 0; i < 2; i++) players[i].draw();
+        }
 
-            foreach(Unit i in units)
-            {
-                i.Draw();
+        public void movePlayer(Vector2 newCoordinates)
+        {
+            int currentPlayerX = (int)players[GamePlay.onTurn].coordinatesInGrid.X;
+            int currentPlayerY = (int)players[GamePlay.onTurn].coordinatesInGrid.Y;
+            matrix[currentPlayerX][currentPlayerY].isEnabled = false;
+            players[GamePlay.onTurn].coordinatesInGrid = newCoordinates;
+            players[GamePlay.onTurn].isSelected = false;
+            GamePlay.switchTurn();
+        }
+        public void highlightPossibleMoves()
+		{
+            int currentPlayerX = (int)players[GamePlay.onTurn].coordinatesInGrid.X;
+            int currentPlayerY = (int)players[GamePlay.onTurn].coordinatesInGrid.Y;
+            for (int i = currentPlayerX - 1; i <= currentPlayerX + 1; i++) {
+                for (int j = currentPlayerY - 1; j <= currentPlayerY + 1; j++)
+                {
+                    if (i >= 0 && i < GamePlay.gridDimensions.X && j >= 0 && j < GamePlay.gridDimensions.Y)
+					{
+                        if (matrix[i][j].isEnabled) matrix[i][j].isHighlighted = true;
+                    }
+                }
             }
-        }
-
-        public void addUnit(Unit _newUnit, int x, int y)
-        {
-            Unit temp = new Unit(_newUnit);
-            temp.mPosition.X = matrix[x][y].mPosition.X + tileSize / 2 - temp.mDimensions.X / 2;
-            temp.mPosition.Y = matrix[x][y].mPosition.Y + tileSize / 2 - temp.mDimensions.Y / 2;
-            temp.mDimensions.X = tileSize - 20;
-            temp.mDimensions.Y = tileSize - 20;
-        }
-
-    }
-
-    internal class Unit : Drawable
-    {
-        public Unit()
-        {
-        }
-
-        public Unit(Unit _unit)
-        {
-            mPosition = _unit.mPosition;
-            mDimensions = _unit.mDimensions;
-            mTexture = _unit.Texture;
-        }
+		}
     }
 
     internal class GridTile : Drawable
     {
-        Texture2D mask;
-        public bool drawMask = false;
+        Texture2D hMask;
+        Texture2D disabledMask;
+        public bool isHovered = false;
+        public bool isHighlighted = false;
+        public bool isEnabled = true;
         public GridTile() 
         {
-            mask = Config.Instance.hoverMask;
+            hMask = Config.Instance.hoverMask;
+            disabledMask = Config.Instance.gridTile2;
+        }
+
+        public void update()
+        {
+
         }
 
         public override void Draw()
         {
             base.Draw();
+            if (isHighlighted || isHovered || !isEnabled) drawMask();
+        }
 
-            if(drawMask)
-            {
-                Texture2D temp = Texture;
-                Texture = mask;
-                Render.Draw(this);
-                Texture = temp;
-            }
-
+        public void drawMask()
+        {
+            Texture2D temp = Texture;
+            Texture = hMask;
+            if (!isEnabled) Texture = disabledMask;
+            Render.Draw(this);
+            Texture = temp;
         }
     }
 }

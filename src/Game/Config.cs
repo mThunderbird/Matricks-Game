@@ -107,7 +107,7 @@ internal sealed class Config
         gridTileLines = loadTexture2D("grid/gridTileLines");
         gridTile2Part = loadTexture2D("grid/gridTile2Part");
 
-        character1 = loadTexture2D("palyers/character1");
-        character2 = loadTexture2D("palyers/character2");
+        character1 = loadTexture2D("player/character1");
+        character2 = loadTexture2D("player/character2");
     }
 }

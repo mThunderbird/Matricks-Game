@@ -15,18 +15,17 @@ namespace MonoGameEngine.src.Game.States
 
         Drawable background;
         Grid grid;
+        public static Vector2 gridDimensions = new Vector2(8, 8);
 
         Button exitButton;
         Button backButton;
 
-        Player player1 = new Player();
-        Player player2 = new Player();
-
-        public static int onTurn = 1;
+        public static int onTurn = 0;
 
         public override void Init()
         {
             base.Init();
+            onTurn = 0;
 
             background = new Drawable();
             background.Texture = Config.Instance.background;
@@ -45,7 +44,7 @@ namespace MonoGameEngine.src.Game.States
             backButton.mDimensions = new Vector2(100, 100);
             backButton.setSoundEff(Config.Instance.clickSound);
 
-            grid = new Grid(new Vector2(8, 8));
+            grid = new Grid(gridDimensions);
         }
 
         public override void Update()
@@ -54,13 +53,6 @@ namespace MonoGameEngine.src.Game.States
             grid.update();
             backButton.update();
             exitButton.update();
-            if (onTurn == 1)
-			{
-                player1.waitForAction();
-			} else
-            {
-                player2.waitForAction();
-            }
         }
 
         public override void Draw()
@@ -74,13 +66,13 @@ namespace MonoGameEngine.src.Game.States
 
         public static void switchTurn()
 		{
-            if (onTurn == 1)
+            if (onTurn == 0)
             {
-                onTurn = 2;
+                onTurn = 1;
 			}
 			else
 			{
-                onTurn = 1;
+                onTurn = 0;
 			}
 		}
     }
