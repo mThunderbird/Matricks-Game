@@ -13,7 +13,7 @@ namespace MonoGameEngine.src.Game
         static StateManager() { }
         private StateManager()
         {
-            CurrentState = new LoadingScreen();
+            CurrentState = new GamePlay();
             CurrentState.Init();
         }
         public static StateManager Instance { get { return instance; } }
@@ -32,6 +32,9 @@ namespace MonoGameEngine.src.Game
                     break;
                 case GAME_STATE.MENU:
                     CurrentState = new Menu();
+                    break;
+                case GAME_STATE.MODE_SELECT:
+                    CurrentState = new ModeSelect();
                     break;
                 case GAME_STATE.SETTINGS:
                     break;

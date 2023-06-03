@@ -19,6 +19,7 @@ namespace MonoGameEngine.src.Game.States
         Button exitButton;
         Button backButton;
 
+        bool test = true;
         public override void Init()
         {
             base.Init();
@@ -33,7 +34,6 @@ namespace MonoGameEngine.src.Game.States
             exitButton.mPosition = new Vector2(1770, 50);
             exitButton.mDimensions = new Vector2(100, 100);
             exitButton.setSoundEff(Config.Instance.clickSound);
-
 
             backButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.MENU));
             backButton.Texture = Config.Instance.backButton;
@@ -50,6 +50,14 @@ namespace MonoGameEngine.src.Game.States
             grid.update();
             backButton.update();
             exitButton.update();
+
+            if(test)
+            {
+                Unit temp = new Unit();
+                temp.Texture = Config.Instance.character1;
+                grid.addUnit(temp, 2 , 3);
+                test = false;
+            }
         }
 
         public override void Draw()

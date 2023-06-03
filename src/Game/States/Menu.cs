@@ -36,7 +36,7 @@ namespace MonoGameEngine.src.Engine.States
             gameBanner.mPosition = new Vector2(260, 150);
             gameBanner.mDimensions = new Vector2(1400, 600);
 
-            playButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.GAME_MODE_1));
+            playButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.MODE_SELECT));
             playButton.Texture = Config.Instance.playButton;
             playButton.mPosition = new Vector2(260, 820);
             playButton.mDimensions = new Vector2(540, 160);

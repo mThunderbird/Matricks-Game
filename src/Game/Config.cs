@@ -41,6 +41,9 @@ internal sealed class Config
     public Texture2D hoverMask;
     public Texture2D gameBanner;
 
+    public Texture2D singlePlayerButton;
+    public Texture2D twoPlayerButton;
+
     public Texture2D backButton;
     public Texture2D gridTile1;
     public Texture2D gridTile2;
@@ -48,37 +51,34 @@ internal sealed class Config
     public Texture2D gridTileLines;
     public Texture2D gridTileBolts;
     public Texture2D gridTile2Part;
-    public Texture2D gridMaskCross;
-    public Texture2D gridMaskPoint;
-    public Texture2D gridMaskHover;
 
-    public void Initv2(ContentManager c)
-    {
-        TEXTURE_NOT_FOUND = c.Load<Texture2D>("NOT_FOUND");
+    public Texture2D character1;
+    public Texture2D character2;
 
-        background = c.Load<Texture2D>("background");
-        introSong = c.Load<Song>("sounds/MenInBlackTheme");
+    //public void Initv2(ContentManager c)
+    //{
+    //    TEXTURE_NOT_FOUND = c.Load<Texture2D>("NOT_FOUND");
 
-        logo = c.Load<Texture2D>("UI/logo");
-        pressSpaceTexture = c.Load<Texture2D>("UI/pressToCont");
+    //    background = c.Load<Texture2D>("background");
+    //    introSong = c.Load<Song>("sounds/MenInBlackTheme");
 
-        gameBanner = c.Load<Texture2D>("UI/gameBanner");
-        playButton = c.Load<Texture2D>("UI/playButton");
-        settingsButton = c.Load<Texture2D>("UI/settingsButton");
-        exitButton = c.Load<Texture2D>("UI/exitButton");
+    //    logo = c.Load<Texture2D>("UI/logo");
+    //    pressSpaceTexture = c.Load<Texture2D>("UI/pressToCont");
 
-        backButton = c.Load<Texture2D>("UI/backButton");
-        gridTile1 = c.Load<Texture2D>("grid/gridTile1");
-        gridTile2 = c.Load<Texture2D>("grid/gridTile2");
-        gridTileBolts = c.Load<Texture2D>("grid/gridTile3");
-        gridTileBroken = c.Load<Texture2D>("grid/gridTileBroken");
-        gridTileLines = c.Load<Texture2D>("grid/gridTileLines");
-        gridTile2Part = c.Load<Texture2D>("grid/gridTile2Part");
+    //    gameBanner = c.Load<Texture2D>("UI/gameBanner");
+    //    playButton = c.Load<Texture2D>("UI/playButton");
+    //    settingsButton = c.Load<Texture2D>("UI/settingsButton");
+    //    exitButton = c.Load<Texture2D>("UI/exitButton");
 
-        gridMaskCross = c.Load<Texture2D>("grid/cross");
-        gridMaskPoint = c.Load<Texture2D>("grid/point");
-        gridMaskHover = c.Load<Texture2D>("grid/hover");
-    }
+    //    backButton = c.Load<Texture2D>("UI/backButton");
+    //    gridTile1 = c.Load<Texture2D>("grid/gridTile1");
+    //    gridTile2 = c.Load<Texture2D>("grid/gridTile2");
+    //    gridTileBolts = c.Load<Texture2D>("grid/gridTile3");
+    //    gridTileBroken = c.Load<Texture2D>("grid/gridTileBroken");
+    //    gridTileLines = c.Load<Texture2D>("grid/gridTileLines");
+    //    gridTile2Part = c.Load<Texture2D>("grid/gridTile2Part");
+
+    //}
     public void Init(Func<string, Texture2D> loadTexture2D, Func<string, SpriteFont> loadFont, Func<string, Song> loadSong, Func<string, SoundEffect> loadSound)
     {
         introSong = loadSong("sounds/MenInBlackTheme");
@@ -95,6 +95,8 @@ internal sealed class Config
         playButton = loadTexture2D("UI/playButton");
         settingsButton = loadTexture2D("UI/settingsButton");
         exitButton = loadTexture2D("UI/exitButton");
+        singlePlayerButton = loadTexture2D("UI/1PlayerMode");
+        twoPlayerButton = loadTexture2D("UI/2PlayerMode");
         hoverMask = loadTexture2D("UI/hoverMask");
 
         backButton = loadTexture2D("UI/backButton");
@@ -105,9 +107,7 @@ internal sealed class Config
         gridTileLines = loadTexture2D("grid/gridTileLines");
         gridTile2Part = loadTexture2D("grid/gridTile2Part");
 
-        gridMaskCross = loadTexture2D("grid/cross");
-        gridMaskPoint = loadTexture2D("grid/point");
-        gridMaskHover = loadTexture2D("grid/hover");
-
+        character1 = loadTexture2D("palyers/character1");
+        character2 = loadTexture2D("palyers/character2");
     }
 }

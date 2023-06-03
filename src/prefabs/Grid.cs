@@ -22,18 +22,18 @@ namespace MonoGameEngine.src.prefabs
         List<Texture2D> gridTileMainTextures;
         List<Texture2D> gridTileSecondaryTextures;
 
-        Texture2D gridMaskCross;
-        Texture2D gridMaskPoint;
-        Texture2D gridMaskHover;
 
         /// <summary>
         ///  first [] contains index of row
         ///  second [] contains index of collumn
         /// </summary>
         List<List<GridTile>> matrix;
-
+        List<Unit> units;
         public Grid(Vector2 _dimensions)
         {
+            matrix = new List<List<GridTile>>();
+            units = new List<Unit>();
+
             gridTileMainTextures = new List<Texture2D>();
             gridTileMainTextures.Add(Config.Instance.gridTile1);
             gridTileMainTextures.Add(Config.Instance.gridTile2);
@@ -43,10 +43,6 @@ namespace MonoGameEngine.src.prefabs
             gridTileSecondaryTextures.Add(Config.Instance.gridTileBolts);
             gridTileSecondaryTextures.Add(Config.Instance.gridTileLines);
             gridTileSecondaryTextures.Add(Config.Instance.gridTileBroken);
-
-            gridMaskCross = Config.Instance.gridMaskCross;
-            gridMaskPoint = Config.Instance.gridMaskPoint;
-            gridMaskHover = Config.Instance.gridMaskHover;
 
             createMatrix(_dimensions);
 
@@ -81,7 +77,6 @@ namespace MonoGameEngine.src.prefabs
             position.X = Game1.WINDOW_WIDTH / 2 - dimensions.X * tileSize / 2;
             position.Y = Game1.WINDOW_HEIGHT / 2 - dimensions.Y * tileSize / 2;
 
-            matrix = new List<List<GridTile>>();
             for (int i = 0; i < dimensions.X; i++)
             {
                 matrix.Add(new List<GridTile>());
@@ -128,11 +123,39 @@ namespace MonoGameEngine.src.prefabs
                     matrix[i][j].Draw();
                 }
             }
+
+            foreach(Unit i in units)
+            {
+                i.Draw();
+            }
+        }
+
+        public void addUnit(Unit _newUnit, int x, int y)
+        {
+            Unit temp = new Unit(_newUnit);
+            temp.mPosition.X = matrix[x][y].mPosition.X + tileSize / 2 - temp.mDimensions.X / 2;
+            temp.mPosition.Y = matrix[x][y].mPosition.Y + tileSize / 2 - temp.mDimensions.Y / 2;
+            temp.mDimensions.X = tileSize - 20;
+            temp.mDimensions.Y = tileSize - 20;
         }
 
     }
 
-    internal class GridTile : DrawableRotated
+    internal class Unit : Drawable
+    {
+        public Unit()
+        {
+        }
+
+        public Unit(Unit _unit)
+        {
+            mPosition = _unit.mPosition;
+            mDimensions = _unit.mDimensions;
+            mTexture = _unit.Texture;
+        }
+    }
+
+    internal class GridTile : Drawable
     {
         Texture2D mask;
         public bool drawMask = false;
