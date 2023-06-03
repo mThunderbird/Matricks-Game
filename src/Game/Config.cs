@@ -60,6 +60,11 @@ internal sealed class Config
     public Texture2D character1;
     public Texture2D character2;
 
+    public Texture2D botWins;
+    public Texture2D player1Wins;
+    public Texture2D player2Wins;
+    public Texture2D draw;
+
     public Texture2D disabledMask1;
     public Texture2D disabledMask2;
 
@@ -105,5 +110,10 @@ internal sealed class Config
 
         sliderBar = loadTexture2D("UI/bar");
         sliderKnob = loadTexture2D("UI/knob");
+
+        botWins = loadTexture2D("winscreen/bot wins");
+        player1Wins = loadTexture2D("winscreen/player1 wins");
+        player2Wins = loadTexture2D("winscreen/player2 wins");
+        draw = loadTexture2D("winscreen/draw");
     }
 }

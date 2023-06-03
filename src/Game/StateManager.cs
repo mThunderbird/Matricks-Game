@@ -41,6 +41,9 @@ namespace MonoGameEngine.src.Game
                 case GAME_STATE.GAME_MODE_1:
                     CurrentState = new GamePlay();
                     break;
+                case GAME_STATE.GAME_MODE_2:
+                    CurrentState = new SinglePlayer();
+                    break;
                 case GAME_STATE.WIN_SCREEN:
                     CurrentState = new WinScreen();
                     break;

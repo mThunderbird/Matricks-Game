@@ -17,6 +17,7 @@ namespace MonoGameEngine.src.Engine.States
         Button backButton;
         Button exitButton;
 
+        Drawable winner;
         public WinScreen()
         {
 
@@ -41,6 +42,25 @@ namespace MonoGameEngine.src.Engine.States
             backButton.dimensions = new Vector2(100, 100);
             backButton.setSoundEff(Config.Instance.clickSound);
 
+            winner = new Drawable();
+            switch(Game1.winner)
+            {
+                case 0:
+                    winner.Texture = Config.Instance.player1Wins;
+                    break;
+                case 1:
+                    winner.Texture = Config.Instance.player2Wins;
+                    break;
+                case 2:
+                    winner.Texture = Config.Instance.botWins;
+                    break;
+                case -1:
+                    winner.Texture = Config.Instance.draw;
+                    break;
+            }
+
+            winner.position.X = Game1.WINDOW_WIDTH / 2 - winner.dimensions.X / 2;
+            winner.position.Y = Game1.WINDOW_HEIGHT / 2 - winner.dimensions.Y / 2;
         }
 
         public override void Update()
@@ -51,13 +71,14 @@ namespace MonoGameEngine.src.Engine.States
             base.Update();
         }
 
-        public override void Draw()
+        public override void draw()
         {
-            base.Draw();
+            base.draw();
 
-            background.Draw();
-            exitButton.Draw();
-            backButton.Draw();
+            background.draw();
+            exitButton.draw();
+            backButton.draw();
+            winner.draw();
         }
 
         public override void Dispose()
