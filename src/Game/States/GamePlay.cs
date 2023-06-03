@@ -19,7 +19,11 @@ namespace MonoGameEngine.src.Game.States
         Button exitButton;
         Button backButton;
 
-        bool test = true;
+        Player player1 = new Player();
+        Player player2 = new Player();
+
+        public static int onTurn = 1;
+
         public override void Init()
         {
             base.Init();
@@ -50,13 +54,12 @@ namespace MonoGameEngine.src.Game.States
             grid.update();
             backButton.update();
             exitButton.update();
-
-            if(test)
+            if (onTurn == 1)
+			{
+                player1.waitForAction();
+			} else
             {
-                Unit temp = new Unit();
-                temp.Texture = Config.Instance.character1;
-                grid.addUnit(temp, 2 , 3);
-                test = false;
+                player2.waitForAction();
             }
         }
 
@@ -69,5 +72,16 @@ namespace MonoGameEngine.src.Game.States
             exitButton.Draw();
         }
 
+        public static void switchTurn()
+		{
+            if (onTurn == 1)
+            {
+                onTurn = 2;
+			}
+			else
+			{
+                onTurn = 1;
+			}
+		}
     }
 }
