@@ -53,6 +53,9 @@ internal sealed class Config
     public Texture2D gridTileBolts;
     public Texture2D gridTile2Part;
 
+    public Texture2D player1Score;
+    public Texture2D player2Score;
+
     public Texture2D character1;
     public Texture2D character2;
 
@@ -89,6 +92,8 @@ internal sealed class Config
         gridTileBroken = loadTexture2D("grid/gridTileBroken");
         gridTileLines = loadTexture2D("grid/gridTileLines");
         gridTile2Part = loadTexture2D("grid/gridTile2Part");
+        player1Score = loadTexture2D("UI/player1score");
+        player2Score = loadTexture2D("UI/player2Score");
 
         character1 = loadTexture2D("player/character1");
         character2 = loadTexture2D("player/character2");

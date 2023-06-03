@@ -29,7 +29,7 @@ namespace MonoGameEngine.src.prefabs
         /// </summary>
         List<List<GridTile>> matrix;
 
-        List<Player> players;
+        public List<Player> players;
         public Grid(Vector2 _dimensions)
         {
             matrix = new List<List<GridTile>>();
@@ -253,6 +253,8 @@ namespace MonoGameEngine.src.prefabs
             int currentPlayerY = (int)players[GamePlay.onTurn].coordinatesInGrid.Y;
             matrix[currentPlayerX][currentPlayerY].owner = GamePlay.onTurn;
             matrix[currentPlayerX][currentPlayerY].isEnabled = false;
+
+            matrix[(int)newCoordinates.X][(int)newCoordinates.Y].operation.execute(players[GamePlay.onTurn]);
             matrix[(int)newCoordinates.X][(int)newCoordinates.Y].owner = GamePlay.onTurn;
             matrix[(int)newCoordinates.X][(int)newCoordinates.Y].isEnabled = false;
             players[GamePlay.onTurn].coordinatesInGrid = newCoordinates;
