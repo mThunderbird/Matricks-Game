@@ -70,6 +70,7 @@ internal sealed class Config
 
     public Texture2D sliderBar;
     public Texture2D sliderKnob;
+
     public void Init(Func<string, Texture2D> loadTexture2D, Func<string, SpriteFont> loadFont, Func<string, Song> loadSong, Func<string, SoundEffect> loadSound)
     {
         introSong = loadSong("sounds/MenInBlackTheme");

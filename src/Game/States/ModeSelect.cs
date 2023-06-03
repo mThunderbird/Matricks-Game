@@ -23,6 +23,11 @@ namespace MonoGameEngine.src.Engine.States
         Slider sliderWidth;
         Slider sliderHeight;
 
+        Drawable rows;
+        Drawable cols;
+        Rectangle rowVal;
+        Rectangle colVal;
+
         public ModeSelect()
         {
 
@@ -61,6 +66,7 @@ namespace MonoGameEngine.src.Engine.States
 
             sliderWidth = new Slider(new Vector2(260, 960), 4, 16);
             sliderHeight = new Slider(new Vector2(1120, 960), 4, 16);
+
         }
 
         public override void Update()
@@ -86,6 +92,11 @@ namespace MonoGameEngine.src.Engine.States
             twoPlayerButton.draw();
             sliderWidth.draw();
             sliderHeight.draw();
+
+            Render.drawString(Config.Instance.arialFont,
+                "Rows: " + sliderWidth.resultValue.ToString(), new Rectangle(260, 860, 500, 70), Color.White, "XXXXXXXX");
+            Render.drawString(Config.Instance.arialFont,
+                "Cols: " + sliderHeight.resultValue.ToString(), new Rectangle(1120, 860, 500, 70), Color.White, "XXXXXXXX");
         }
 
         public override void Dispose()
