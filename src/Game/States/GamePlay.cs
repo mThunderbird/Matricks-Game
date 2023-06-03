@@ -85,7 +85,8 @@ namespace MonoGameEngine.src.Game.States
             float points1 = MathF.Round(grid.players[0].points, 1);
             float points2 = MathF.Round(grid.players[1].points, 1);
 
-            Render.drawString(Config.Instance.arialFont, points1.ToString(), player1Score, Color.White, "XXXXXX");
+            Render.drawString(Config.Instance.arialFont, points1.ToString().Replace(",","."), player1Score, Color.White, "XXXXXX");
+            Render.drawString(Config.Instance.arialFont, points1.ToString().Replace(",","."), player1Score, Color.White, "XXXXXX");
             Render.drawString(Config.Instance.arialFont, points2.ToString(), player2Score, Color.White, "XXXXXX");
         }
 
