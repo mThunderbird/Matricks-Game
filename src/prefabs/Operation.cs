@@ -16,7 +16,7 @@ namespace MonoGameEngine.src.prefabs
         protected string sign;
 
         protected Operation() { }
-        public virtual void execute(int _playerScore) { }
+        public virtual void execute(Player _player) { }
         public virtual void drawOperation()
         {
 
@@ -38,7 +38,7 @@ namespace MonoGameEngine.src.prefabs
         public virtual void draw()
         {
             Color color = new Color(255, 175, 177, 1);
-            Render.drawString(Config.Instance.arialFont, sign + value.ToString(), rect, color);
+            Render.drawString(Config.Instance.arialFont, sign + value.ToString(), rect, color, "XXXX");
         }
     }
 
@@ -48,9 +48,9 @@ namespace MonoGameEngine.src.prefabs
         {
             sign = "+";
         }
-        public override void execute(int _playerScore)
+        public override void execute(Player _player)
         {
-            _playerScore += value;
+            _player.points += value;
         }
     }
 
@@ -60,9 +60,9 @@ namespace MonoGameEngine.src.prefabs
         {
             sign = "-";
         }
-        public override void execute(int _playerScore)
+        public override void execute(Player _player)
         {
-            _playerScore -= value;
+            _player.points -= value;
         }
 
     }
@@ -73,9 +73,9 @@ namespace MonoGameEngine.src.prefabs
         {
             sign = "x";
         }
-        public override void execute(int _playerScore)
+        public override void execute(Player _player)
         {
-            _playerScore *= value;
+            _player.points *= value;
         }
     }
 
@@ -85,9 +85,9 @@ namespace MonoGameEngine.src.prefabs
         {
             sign = ":";
         }    
-        public override void execute(int _playerScore)
+        public override void execute(Player _player)
         {
-            _playerScore /= value;
+            _player.points /= value;
         }
     }
 }

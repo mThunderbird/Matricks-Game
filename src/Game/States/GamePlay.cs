@@ -14,6 +14,11 @@ namespace MonoGameEngine.src.Game.States
         public GamePlay() { }
 
         Drawable background;
+        Drawable player1ScoreUI;
+        Drawable player2ScoreUI;
+        Rectangle player1Score;
+        Rectangle player2Score;
+
         Grid grid;
         public static Vector2 gridDimensions = new Vector2(8, 8);
 
@@ -44,6 +49,18 @@ namespace MonoGameEngine.src.Game.States
             backButton.dimensions = new Vector2(100, 100);
             backButton.setSoundEff(Config.Instance.clickSound);
 
+            player1ScoreUI = new Drawable();
+            player1ScoreUI.position = new Vector2(40, 340);
+            player1ScoreUI.dimensions = new Vector2(360, 160);
+            player1ScoreUI.Texture = Config.Instance.player1Score;
+            player1Score = new Rectangle(160, 370, 230, 100);
+
+            player2ScoreUI = new Drawable();
+            player2ScoreUI.position = new Vector2(40, 580);
+            player2ScoreUI.dimensions = new Vector2(360, 160);
+            player2ScoreUI.Texture = Config.Instance.player2Score;
+            player2Score = new Rectangle(160, 610, 230, 100);
+
             grid = new Grid(gridDimensions);
         }
 
@@ -62,6 +79,14 @@ namespace MonoGameEngine.src.Game.States
             grid.draw();
             backButton.Draw();
             exitButton.Draw();
+            player1ScoreUI.Draw();
+            player2ScoreUI.Draw();
+
+            float points1 = MathF.Round(grid.players[0].points, 1);
+            float points2 = MathF.Round(grid.players[1].points, 1);
+
+            Render.drawString(Config.Instance.arialFont, points1.ToString(), player1Score, Color.White, "XXXXXX");
+            Render.drawString(Config.Instance.arialFont, points2.ToString(), player2Score, Color.White, "XXXXXX");
         }
 
         public static void switchTurn()

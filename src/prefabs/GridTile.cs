@@ -18,7 +18,7 @@ namespace MonoGameEngine.src.prefabs
         public bool isHighlighted = false;
         public bool isEnabled = true;
         public int owner;
-        Operation operation;
+        public Operation operation;
         public GridTile()
         {
             hMask = Config.Instance.hoverMask;
@@ -50,9 +50,9 @@ namespace MonoGameEngine.src.prefabs
             Render.Draw(this);
             Texture = temp;
         }
-        public void setOperation(Operation operation)
+        public void setOperation(Operation _operation)
         {
-            this.operation = operation;
+           operation = _operation;
         }
     }
 }

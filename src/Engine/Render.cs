@@ -26,9 +26,9 @@ namespace MonoGameEngine.src.Engine
             spriteBatch.Draw(_drawable.Texture, _drawable.Bounds(), null, _drawable.mColor, _drawable.rotation, Vector2.Zero, SpriteEffects.None, 0);
         }
 
-        public static void drawString(SpriteFont _font, string _text, Rectangle _rect, Color _color)
+        public static void drawString(SpriteFont _font, string _text, Rectangle _rect, Color _color, string expectedLength)
         {
-            Vector2 dim = _font.MeasureString("XXXX");
+            Vector2 dim = _font.MeasureString(expectedLength);
             float koef = MathHelper.Min(_rect.Width / dim.X, _rect.Height / dim.Y);
 
             Vector2 realDim = _font.MeasureString(_text);
