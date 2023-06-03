@@ -37,7 +37,8 @@ namespace MonoGameEngine.src.prefabs
         }
         public virtual void draw()
         {
-            Render.drawString(Config.Instance.arialFont, sign + value.ToString(), rect);
+            Color color = new Color(255, 175, 177, 1);
+            Render.drawString(Config.Instance.arialFont, sign + value.ToString(), rect, color);
         }
     }
 
@@ -70,7 +71,7 @@ namespace MonoGameEngine.src.prefabs
     {
         public OperationMultiply()
         {
-            sign = "*";
+            sign = "x";
         }
         public override void execute(int _playerScore)
         {
@@ -82,7 +83,7 @@ namespace MonoGameEngine.src.prefabs
     {
         public OperationDivide() 
         {
-            sign = "/";
+            sign = ":";
         }    
         public override void execute(int _playerScore)
         {

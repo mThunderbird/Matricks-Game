@@ -108,7 +108,7 @@ namespace MonoGameEngine.src.prefabs
                 {
                     int depth = MathHelper.Min(
                         distanceFromTwoSquares(Vector2.Zero, new Vector2(i, j)), 
-                        distanceFromTwoSquares(dimensions, new Vector2(i, j)));
+                        distanceFromTwoSquares(new Vector2(dimensions.X - 1, dimensions.Y - 1), new Vector2(i, j)));
                     Operation temp = createOperation(depth, maxValue);
                     temp.setRect(matrix[i][j].Bounds());
                     matrix[i][j].setOperation(temp);
@@ -152,12 +152,17 @@ namespace MonoGameEngine.src.prefabs
             }
 
             //choose value
+            if(depth == 0)
+            {
+                newOp.setValue(0);
+                return newOp;
+            }
 
             int curVal = (int)(koef * maxValue);
-            //int fluct = MathHelper.Min(curVal - 0, maxValue - curVal)/2;
+            int val = new Random().Next(curVal - 1, curVal + 2);
+            if (val < 0) val = curVal;
 
-            //newOp.setValue(new Random().Next(curVal - fluct, curVal + fluct));
-            newOp.setValue(curVal);
+            newOp.setValue(val);
 
             return newOp;
         }
