@@ -159,6 +159,13 @@ namespace MonoGameEngine.src.prefabs
                 return newOp;
             }
 
+            if(new Random().Next(0, 8) == 5)
+            {
+                newOp = new OperationMultiply();
+                newOp.setValue(0);
+                return newOp;
+            }
+
             int curVal = (int)(koef * maxValue);
             int val = new Random().Next(curVal - 1, curVal + 2);
             if (val < 0) val = curVal;
