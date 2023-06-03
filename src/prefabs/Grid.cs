@@ -89,7 +89,7 @@ namespace MonoGameEngine.src.prefabs
                 for (int j = 0; j < dimensions.Y; j++)
                 {
                     GridTile temp = new GridTile();
-                    temp.position = new Vector2(position.X + j * tileSize, position.Y + i * tileSize);
+                    temp.position = new Vector2(position.X + i * tileSize, position.Y + j * tileSize);
                     temp.dimensions = new Vector2(tileSize, tileSize);
 
                     temp.Texture = Config.Instance.gridTile1;
