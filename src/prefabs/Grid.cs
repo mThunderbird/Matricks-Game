@@ -102,7 +102,7 @@ namespace MonoGameEngine.src.prefabs
         {
             int maxValue = (int)(dimensions.X + dimensions.Y);
 
-            for(int i = 0; i < dimensions.Y; i++)
+            for(int i = 0; i < dimensions.X; i++)
             {
                 for(int j = 0; j < dimensions.Y; j++)
                 {

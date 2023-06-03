@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameEngine.src.Game;
+using MonoGameEngine.src.Game.States;
 using MonoGameEngine.src.Engine.UI;
 
 
@@ -20,8 +21,8 @@ namespace MonoGameEngine.src.Engine.States
         Button backButton;
         Button exitButton;
 
-        Slider sliderWidth;
-        Slider sliderHeight;
+        public static Slider sliderWidth;
+        public static Slider sliderHeight;
 
         public ModeSelect()
         {
@@ -59,8 +60,8 @@ namespace MonoGameEngine.src.Engine.States
             backButton.dimensions = new Vector2(100, 100);
             backButton.setSoundEff(Config.Instance.clickSound);
 
-            sliderWidth = new Slider(new Vector2(300, 860), 4, 16);
-            sliderHeight = new Slider(new Vector2(1920 - 860, 860), 4, 16);
+            sliderWidth = new Slider(new Vector2(310, 860), 4, 16);
+            sliderHeight = new Slider(new Vector2(1920 - 850, 860), 4, 16);
         }
 
         public override void Update()
@@ -69,8 +70,8 @@ namespace MonoGameEngine.src.Engine.States
             exitButton.update();
             singlePlayerButton.update();
             twoPlayerButton.update();
-            sliderWidth.update();
-            sliderHeight.update();
+            GamePlay.gridDimensions.X = sliderWidth.update();
+            GamePlay.gridDimensions.Y = sliderHeight.update();
 
             base.Update();
         }

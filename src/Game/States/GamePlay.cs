@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MonoGameEngine.src.prefabs;
 using Microsoft.Xna.Framework;
 using MonoGameEngine.src.Engine;
+using MonoGameEngine.src.Engine.States;
 
 namespace MonoGameEngine.src.Game.States
 {
@@ -62,7 +63,6 @@ namespace MonoGameEngine.src.Game.States
             player2ScoreUI.dimensions = new Vector2(360, 160);
             player2ScoreUI.Texture = Config.Instance.player2Score;
             player2Score = new Rectangle(160, 610, 230, 100);
-
             grid = new Grid(gridDimensions);
         }
 
@@ -79,10 +79,10 @@ namespace MonoGameEngine.src.Game.States
             base.draw();
             background.draw();
             grid.draw();
-            backButton.Draw();
-            exitButton.Draw();
-            player1ScoreUI.Draw();
-            player2ScoreUI.Draw();
+            backButton.draw();
+            exitButton.draw();
+            player1ScoreUI.draw();
+            player2ScoreUI.draw();
 
             float points1 = MathF.Round(grid.players[0].points, 1);
             float points2 = MathF.Round(grid.players[1].points, 1);

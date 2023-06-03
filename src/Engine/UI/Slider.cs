@@ -13,8 +13,8 @@ namespace MonoGameEngine.src.Engine.UI
 		Drawable knob;
 		int minValue = 0;
 		int maxValue = 0;
-		public int resultValue = 0;
-		public Slider(Vector2 barPosition, int _minValue, int _maxValue)
+		public int resultValue = 8;
+		public Slider(Vector2 barPosition, int _minValue = 4, int _maxValue = 16)
 		{
 			minValue = _minValue;
 			maxValue = _maxValue;
@@ -31,8 +31,10 @@ namespace MonoGameEngine.src.Engine.UI
 			knob.position.Y = barPosition.Y - 15;
 			knob.dimensions = new Vector2(60, 60);
 			knob.origin = Vector2.Zero;
-		}
-		public void update()
+
+			resultValue = 8;
+	}
+		public float update()
 		{
 			if (InputManager.isMouseButtonPressed(MOUSE_BUTTON.LEFT))
 			{
@@ -40,10 +42,11 @@ namespace MonoGameEngine.src.Engine.UI
 				{
 					knob.position.X = InputManager.getMouseCoordinates().X - 30;
 					knob.position.X = clamp(knob.position.X, bar.position.X, bar.position.X + bar.dimensions.X);
-					resultValue = (int)(knob.position.X - bar.position.X) * (maxValue - minValue) / (int)bar.dimensions.X;
+					resultValue = (int)(knob.position.X - bar.position.X) * (maxValue - minValue) / (int)bar.dimensions.X + 4;
 				}
 			}
-			if (InputManager.eventIsMouseReleased()) knob.position.X = bar.position.X + (resultValue * bar.dimensions.X) / (maxValue - minValue) - 30;
+			if (InputManager.eventIsMouseReleased()) knob.position.X = bar.position.X + ((resultValue - 4) * bar.dimensions.X) / (maxValue - minValue) - 30;
+			return resultValue;
 		}
 		public void draw()
 		{
