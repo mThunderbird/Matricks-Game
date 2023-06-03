@@ -15,10 +15,12 @@ namespace MonoGameEngine.src.Engine
 		private bool drawMask = false;
 		Action func;
 		SoundEffect soundEffect;
-		public Button(Action _func) 
+		bool disabled;
+		public Button(Action _func, bool _disabled = false) 
 		{ 
 			this.func = _func;
 			mask = Config.Instance.hoverMask;
+			disabled = _disabled;
 		}
 		public void update()
 		{
@@ -50,10 +52,16 @@ namespace MonoGameEngine.src.Engine
 		{
 			base.draw();
 
-			if (drawMask && mask != null)
+			if (drawMask && mask != null || disabled)
 			{
 				Texture2D temp = Texture;
-				Texture = mask;
+				if (disabled)
+				{
+					Texture = Config.Instance.disabledMask;
+				} else
+				{
+					Texture = mask;
+				}
 				Render.draw(this);
 				Texture = temp;
 			}

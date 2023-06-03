@@ -65,6 +65,7 @@ internal sealed class Config
     public Texture2D player2Wins;
     public Texture2D draw;
 
+    public Texture2D disabledMask;
     public Texture2D disabledMask1;
     public Texture2D disabledMask2;
 
@@ -105,6 +106,7 @@ internal sealed class Config
         character1 = loadTexture2D("player/character1");
         character2 = loadTexture2D("player/character2");
 
+        disabledMask = loadTexture2D("UI/disableHover");
         disabledMask1 = loadTexture2D("grid/disabledMask1");
         disabledMask2 = loadTexture2D("grid/disabledMask2");
 

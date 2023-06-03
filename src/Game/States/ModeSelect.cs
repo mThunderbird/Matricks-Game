@@ -36,7 +36,7 @@ namespace MonoGameEngine.src.Engine.States
             background.position = new Vector2(0, 0);
             background.dimensions = new Vector2(1920, 1080);
 
-            singlePlayerButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.GAME_MODE_1));
+            singlePlayerButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.GAME_MODE_1), true);
             singlePlayerButton.Texture = Config.Instance.singlePlayerButton;
             singlePlayerButton.position = new Vector2(300, 200);
             singlePlayerButton.dimensions = new Vector2(560, 620);
@@ -68,7 +68,7 @@ namespace MonoGameEngine.src.Engine.States
         {
             backButton.update();
             exitButton.update();
-            singlePlayerButton.update();
+            //singlePlayerButton.update();
             twoPlayerButton.update();
             GamePlay.gridDimensions.X = sliderWidth.update();
             GamePlay.gridDimensions.Y = sliderHeight.update();

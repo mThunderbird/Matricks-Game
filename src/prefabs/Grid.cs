@@ -78,10 +78,10 @@ namespace MonoGameEngine.src.prefabs
                     tileSize = (tileSize / 5) * 5;
                 }
             }
-            else tileSize = maximumTileSize;
-
-            position.X = Game1.WINDOW_WIDTH / 2 - dimensions.X * tileSize / 2;
-            position.Y = Game1.WINDOW_HEIGHT / 2 - dimensions.Y * tileSize / 2;
+            else { tileSize = 50; } 
+            
+            position.X = Game1.WINDOW_WIDTH / 2 - (dimensions.X) * tileSize / 2;
+            position.Y = Game1.WINDOW_HEIGHT / 2 - (dimensions.Y) * tileSize / 2;
 
             for (int i = 0; i < dimensions.X; i++)
             {
@@ -89,7 +89,7 @@ namespace MonoGameEngine.src.prefabs
                 for (int j = 0; j < dimensions.Y; j++)
                 {
                     GridTile temp = new GridTile();
-                    temp.position = new Vector2(position.X + j * tileSize, position.Y + i * tileSize);
+                    temp.position = new Vector2(position.X + i * tileSize, position.Y + j * tileSize);
                     temp.dimensions = new Vector2(tileSize, tileSize);
 
                     temp.Texture = Config.Instance.gridTile1;
