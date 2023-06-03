@@ -60,8 +60,8 @@ namespace MonoGameEngine.src.Engine.States
             backButton.dimensions = new Vector2(100, 100);
             backButton.setSoundEff(Config.Instance.clickSound);
 
-            sliderWidth = new Slider(new Vector2(310, 860), 4, 16);
-            sliderHeight = new Slider(new Vector2(1920 - 850, 860), 4, 16);
+            sliderWidth = new Slider(new Vector2(300, 860), 4, 16);
+            sliderHeight = new Slider(new Vector2(1920 - 860, 860), 4, 16);
         }
 
         public override void Update()
