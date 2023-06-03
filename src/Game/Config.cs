@@ -27,6 +27,7 @@ internal sealed class Config
     
     public Song introSong;
     public SoundEffect clickSound;
+    public SpriteFont arialFont;
     
     public Texture2D TEXTURE_NOT_FOUND;
 
@@ -54,35 +55,11 @@ internal sealed class Config
 
     public Texture2D character1;
     public Texture2D character2;
-
-    //public void Initv2(ContentManager c)
-    //{
-    //    TEXTURE_NOT_FOUND = c.Load<Texture2D>("NOT_FOUND");
-
-    //    background = c.Load<Texture2D>("background");
-    //    introSong = c.Load<Song>("sounds/MenInBlackTheme");
-
-    //    logo = c.Load<Texture2D>("UI/logo");
-    //    pressSpaceTexture = c.Load<Texture2D>("UI/pressToCont");
-
-    //    gameBanner = c.Load<Texture2D>("UI/gameBanner");
-    //    playButton = c.Load<Texture2D>("UI/playButton");
-    //    settingsButton = c.Load<Texture2D>("UI/settingsButton");
-    //    exitButton = c.Load<Texture2D>("UI/exitButton");
-
-    //    backButton = c.Load<Texture2D>("UI/backButton");
-    //    gridTile1 = c.Load<Texture2D>("grid/gridTile1");
-    //    gridTile2 = c.Load<Texture2D>("grid/gridTile2");
-    //    gridTileBolts = c.Load<Texture2D>("grid/gridTile3");
-    //    gridTileBroken = c.Load<Texture2D>("grid/gridTileBroken");
-    //    gridTileLines = c.Load<Texture2D>("grid/gridTileLines");
-    //    gridTile2Part = c.Load<Texture2D>("grid/gridTile2Part");
-
-    //}
     public void Init(Func<string, Texture2D> loadTexture2D, Func<string, SpriteFont> loadFont, Func<string, Song> loadSong, Func<string, SoundEffect> loadSound)
     {
         introSong = loadSong("sounds/MenInBlackTheme");
         clickSound = loadSound("sounds/clickSound");
+        arialFont = loadFont("UI/arialFont");
 
         TEXTURE_NOT_FOUND = loadTexture2D("NOT_FOUND");
 

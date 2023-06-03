@@ -86,12 +86,7 @@ namespace MonoGameEngine.src.prefabs
                     temp.mPosition = new Vector2(position.X + j * tileSize, position.Y + i * tileSize);
                     temp.mDimensions = new Vector2(tileSize, tileSize);
 
-                    int rand = new Random().Next(0, gridTileMainTextures.Count + 1);
-                    if (rand >= gridTileMainTextures.Count)
-                    {
-                        temp.Texture = gridTileSecondaryTextures[new Random().Next(0, gridTileSecondaryTextures.Count)];
-                    }
-                    else temp.Texture = gridTileMainTextures[rand];
+                    temp.Texture = Config.Instance.gridTile1;
 
                     matrix[i].Add(temp);
                 }
@@ -128,6 +123,8 @@ namespace MonoGameEngine.src.prefabs
             {
                 i.Draw();
             }
+
+            Render.drawString(Config.Instance.arialFont, "Hello world", new Rectangle(0,0, 100, 100));
         }
 
         public void addUnit(Unit _newUnit, int x, int y)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace MonoGameEngine.src.Engine
 {
@@ -25,9 +26,16 @@ namespace MonoGameEngine.src.Engine
             spriteBatch.Draw(_drawable.Texture, _drawable.Bounds(), null, _drawable.mColor, _drawable.mRotation, Vector2.Zero, SpriteEffects.None, 0);
         }
 
-        //public static void Draw(SpriteFont font, string Text, Rectangle rect)
-        //{
-        //    spriteBatch.DrawString(font, "MonoGame Font Test", position, Color.White, 0, textMiddlePoint, 1.0f, SpriteEffects.None, 0.5f)
-        //}
+        public static void drawString(SpriteFont _font, string _text, Rectangle _rect)
+        {
+            try
+            {
+                spriteBatch.DrawString(_font, _text, Vector2.One, Color.White, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
+            }
+            catch (Exception)
+            {
+
+            }
+        }
     }
 }
