@@ -62,6 +62,9 @@ internal sealed class Config
 
     public Texture2D disabledMask1;
     public Texture2D disabledMask2;
+
+    public Texture2D sliderBar;
+    public Texture2D sliderKnob;
     public void Init(Func<string, Texture2D> loadTexture2D, Func<string, SpriteFont> loadFont, Func<string, Song> loadSong, Func<string, SoundEffect> loadSound)
     {
         introSong = loadSong("sounds/MenInBlackTheme");
@@ -99,5 +102,8 @@ internal sealed class Config
 
         disabledMask1 = loadTexture2D("grid/disabledMask1");
         disabledMask2 = loadTexture2D("grid/disabledMask2");
+
+        sliderBar = loadTexture2D("UI/bar");
+        sliderKnob = loadTexture2D("UI/knob");
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameEngine.src.Game;
+using MonoGameEngine.src.Engine.UI;
 
 
 namespace MonoGameEngine.src.Engine.States
@@ -18,6 +19,9 @@ namespace MonoGameEngine.src.Engine.States
         Button twoPlayerButton;
         Button backButton;
         Button exitButton;
+
+        Slider sliderWidth;
+        Slider sliderHeight;
 
         public ModeSelect()
         {
@@ -54,6 +58,9 @@ namespace MonoGameEngine.src.Engine.States
             backButton.position = new Vector2(50, 50);
             backButton.dimensions = new Vector2(100, 100);
             backButton.setSoundEff(Config.Instance.clickSound);
+
+            sliderWidth = new Slider(new Vector2(300, 860), 4, 16);
+            sliderHeight = new Slider(new Vector2(1920 - 860, 860), 4, 16);
         }
 
         public override void Update()
@@ -62,19 +69,23 @@ namespace MonoGameEngine.src.Engine.States
             exitButton.update();
             singlePlayerButton.update();
             twoPlayerButton.update();
+            sliderWidth.update();
+            sliderHeight.update();
 
             base.Update();
         }
 
-        public override void Draw()
+        public override void draw()
         {
-            base.Draw();
+            base.draw();
 
-            background.Draw();
-            exitButton.Draw();
-            backButton.Draw();
-            singlePlayerButton.Draw();
-            twoPlayerButton.Draw();
+            background.draw();
+            exitButton.draw();
+            backButton.draw();
+            singlePlayerButton.draw();
+            twoPlayerButton.draw();
+            sliderWidth.draw();
+            sliderHeight.draw();
         }
 
         public override void Dispose()

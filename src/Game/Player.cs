@@ -15,7 +15,6 @@ namespace MonoGameEngine.src.Game
 		int index = 0;
 		public Vector2 coordinatesInGrid = new Vector2(0, 0);
 		public bool isSelected = false;
-		public int possibleMoves = -1;
 		public float points;
 		public Player(int _index)
 		{
@@ -29,7 +28,7 @@ namespace MonoGameEngine.src.Game
 		}
 		public void draw()
 		{
-			body.Draw();
+			body.draw();
 		}
 	}
 }

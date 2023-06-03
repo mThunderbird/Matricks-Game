@@ -31,9 +31,9 @@ namespace MonoGameEngine.src.prefabs
 
         }
 
-        public override void Draw()
+        public override void draw()
         {
-            base.Draw();
+            base.draw();
             if (isHighlighted || isHovered || !isEnabled) drawMask();
             if (isEnabled) operation.draw();
         }
@@ -47,7 +47,7 @@ namespace MonoGameEngine.src.prefabs
                 Texture = disabledMask1;
                 if (owner == 1) Texture = disabledMask2;
             }
-            Render.Draw(this);
+            Render.draw(this);
             Texture = temp;
         }
         public void setOperation(Operation _operation)

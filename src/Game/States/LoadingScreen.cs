@@ -51,12 +51,12 @@ namespace MonoGameEngine.src.Engine.States
             base.Update();
         }
 
-        public override void Draw()
+        public override void draw()
         {
-            base.Draw();
-            background.Draw();
-            logo.Draw();
-            text.Draw();
+            base.draw();
+            background.draw();
+            logo.draw();
+            text.draw();
         }
 
         public override void Dispose()

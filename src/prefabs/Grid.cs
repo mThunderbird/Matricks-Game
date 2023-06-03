@@ -241,7 +241,7 @@ namespace MonoGameEngine.src.prefabs
             {
                 for(int j = 0; j < dimensions.Y; j++)
                 {
-                    matrix[i][j].Draw();
+                    matrix[i][j].draw();
                 }
             }
             for (int i = 0; i < 2; i++) players[i].draw();
@@ -260,25 +260,32 @@ namespace MonoGameEngine.src.prefabs
             players[GamePlay.onTurn].coordinatesInGrid = newCoordinates;
             players[GamePlay.onTurn].isSelected = false;
             GamePlay.switchTurn();
+            if (possibleMoves().Count == 0) StateManager.Instance.SwitchState(GAME_STATE.END_SCREEN_1);
         }
         public void highlightPossibleMoves()
 		{
-            players[GamePlay.onTurn].possibleMoves = 0;
+            List<GridTile> possibleMoves = this.possibleMoves();
+            for (int i = 0; i < possibleMoves.Count; i++) possibleMoves[i].isHighlighted = true;
+        }
+        public List<GridTile> possibleMoves()
+		{
+            List<GridTile> possibleMoves = new List<GridTile>();
             int currentPlayerX = (int)players[GamePlay.onTurn].coordinatesInGrid.X;
             int currentPlayerY = (int)players[GamePlay.onTurn].coordinatesInGrid.Y;
-            for (int i = currentPlayerX - 1; i <= currentPlayerX + 1; i++) {
+            for (int i = currentPlayerX - 1; i <= currentPlayerX + 1; i++)
+            {
                 for (int j = currentPlayerY - 1; j <= currentPlayerY + 1; j++)
                 {
                     if (i >= 0 && i < GamePlay.gridDimensions.X && j >= 0 && j < GamePlay.gridDimensions.Y)
-					{
+                    {
                         if (matrix[i][j].isEnabled)
                         {
-                            matrix[i][j].isHighlighted = true;
-                            players[GamePlay.onTurn].possibleMoves++;
+                            possibleMoves.Add(matrix[i][j]);
                         }
                     }
                 }
             }
-		}
+            return possibleMoves;
+        }
     }
 }
