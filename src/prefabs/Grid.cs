@@ -45,10 +45,10 @@ namespace MonoGameEngine.src.prefabs
             gridTileSecondaryTextures.Add(Config.Instance.gridTileBroken);
 
             createMatrix(_dimensions);
-
+            generateOperations();
         }
 
-        public void createMatrix(Vector2 _dimensions)
+        private void createMatrix(Vector2 _dimensions)
         {
             dimensions = _dimensions;
 
@@ -93,6 +93,69 @@ namespace MonoGameEngine.src.prefabs
             }
         }
 
+        private void generateOperations()
+        {
+            int maxValue = (int)(dimensions.X + dimensions.Y);
+
+            for(int i = 0; i < dimensions.Y; i++)
+            {
+                for(int j = 0; j < dimensions.Y; j++)
+                {
+                    int depth = MathHelper.Min(
+                        distanceFromTwoSquares(Vector2.Zero, new Vector2(i, j)), 
+                        distanceFromTwoSquares(dimensions, new Vector2(i, j)));
+                    Operation temp = createOperation(depth, maxValue);
+                    temp.setRect(matrix[i][j].Bounds());
+                    matrix[i][j].setOperation(temp);
+                }
+            }
+        }
+
+        private int distanceFromTwoSquares(Vector2 start, Vector2 end)
+        {
+            return (int)MathHelper.Max(Math.Abs(start.X - end.X), Math.Abs(start.Y - end.Y));
+        }
+
+        private Operation createOperation(int depth, int maxValue)
+        {
+            Operation newOp;
+
+            //choose type -> chance for * or div grows with depth
+            float koef = (depth / (MathHelper.Max(dimensions.X, dimensions.Y)));
+
+            if(new Random().NextDouble() < koef)
+            {
+                if(new Random().NextDouble() < 0.5)
+                {
+                    newOp = new OperationMultiply();
+                }
+                else
+                {
+                    newOp = new OperationDivide();
+                }
+            }
+            else
+            {
+                if (new Random().NextDouble() < 0.5)
+                {
+                    newOp = new OperationAdd();
+                }
+                else
+                {
+                    newOp = new OperationSubstract();
+                }
+            }
+
+            //choose value
+
+            int curVal = (int)(koef * maxValue);
+            //int fluct = MathHelper.Min(curVal - 0, maxValue - curVal)/2;
+
+            //newOp.setValue(new Random().Next(curVal - fluct, curVal + fluct));
+            newOp.setValue(curVal);
+
+            return newOp;
+        }
         public void update()
 		{
             for (int i = 0; i < dimensions.X; i++)
@@ -124,7 +187,6 @@ namespace MonoGameEngine.src.prefabs
                 i.Draw();
             }
 
-            Render.drawString(Config.Instance.arialFont, "Hello world", new Rectangle(0,0, 100, 100));
         }
 
         public void addUnit(Unit _newUnit, int x, int y)
@@ -152,27 +214,4 @@ namespace MonoGameEngine.src.prefabs
         }
     }
 
-    internal class GridTile : Drawable
-    {
-        Texture2D mask;
-        public bool drawMask = false;
-        public GridTile() 
-        {
-            mask = Config.Instance.hoverMask;
-        }
-
-        public override void Draw()
-        {
-            base.Draw();
-
-            if(drawMask)
-            {
-                Texture2D temp = Texture;
-                Texture = mask;
-                Render.Draw(this);
-                Texture = temp;
-            }
-
-        }
-    }
 }

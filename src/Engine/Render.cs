@@ -28,9 +28,12 @@ namespace MonoGameEngine.src.Engine
 
         public static void drawString(SpriteFont _font, string _text, Rectangle _rect)
         {
+            Vector2 dim = _font.MeasureString(_text);
+            float koef = MathHelper.Min(_rect.Width / dim.X, _rect.Height / dim.Y);
+
             try
             {
-                spriteBatch.DrawString(_font, _text, Vector2.One, Color.White, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
+                spriteBatch.DrawString(_font, _text, new Vector2(_rect.X, _rect.Y), Color.White, 0, Vector2.Zero, koef, SpriteEffects.None, 0);
             }
             catch (Exception)
             {
