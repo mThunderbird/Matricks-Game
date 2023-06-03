@@ -42,7 +42,7 @@ namespace MonoGameEngine.src.Engine.States
             playButton.dimensions = new Vector2(540, 160);
             playButton.setSoundEff(Config.Instance.clickSound);
 
-            settingsButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.SETTINGS));
+            settingsButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.INFO));
             settingsButton.Texture = Config.Instance.settingsButton;
             settingsButton.position = new Vector2(1120, 820);
             settingsButton.dimensions = new Vector2(540, 160);

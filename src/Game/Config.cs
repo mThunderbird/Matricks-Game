@@ -28,6 +28,7 @@ internal sealed class Config
     public Song introSong;
     public SoundEffect clickSound;
     public SpriteFont arialFont;
+    public Texture2D info;
     
     public Texture2D TEXTURE_NOT_FOUND;
 
@@ -59,6 +60,11 @@ internal sealed class Config
     public Texture2D character1;
     public Texture2D character2;
 
+    public Texture2D botWins;
+    public Texture2D player1Wins;
+    public Texture2D player2Wins;
+    public Texture2D draw;
+
     public Texture2D disabledMask1;
     public Texture2D disabledMask2;
 
@@ -69,6 +75,7 @@ internal sealed class Config
         introSong = loadSong("sounds/MenInBlackTheme");
         clickSound = loadSound("sounds/clickSound");
         arialFont = loadFont("UI/arialFont");
+        info = loadTexture2D("info");
 
         TEXTURE_NOT_FOUND = loadTexture2D("NOT_FOUND");
 
@@ -81,8 +88,8 @@ internal sealed class Config
         playButton = loadTexture2D("UI/playButton");
         settingsButton = loadTexture2D("UI/settingsButton");
         exitButton = loadTexture2D("UI/exitButton");
-        singlePlayerButton = loadTexture2D("UI/1PlayerMode");
-        twoPlayerButton = loadTexture2D("UI/2PlayerMode");
+        singlePlayerButton = loadTexture2D("UI/1Player");
+        twoPlayerButton = loadTexture2D("UI/2Player");
         hoverMask = loadTexture2D("UI/hoverMask");
 
         backButton = loadTexture2D("UI/backButton");
@@ -103,5 +110,10 @@ internal sealed class Config
 
         sliderBar = loadTexture2D("UI/bar");
         sliderKnob = loadTexture2D("UI/knob");
+
+        botWins = loadTexture2D("winscreen/bot wins");
+        player1Wins = loadTexture2D("winscreen/player1 wins");
+        player2Wins = loadTexture2D("winscreen/player2 wins");
+        draw = loadTexture2D("winscreen/draw");
     }
 }

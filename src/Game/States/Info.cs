@@ -11,14 +11,14 @@ using MonoGameEngine.src.Game;
 
 namespace MonoGameEngine.src.Engine.States
 {
-    internal class WinScreen : State
+    internal class Info : State
     {
         Drawable background;
         Button backButton;
         Button exitButton;
+        Drawable info;
 
-        Drawable winner;
-        public WinScreen()
+        public Info()
         {
 
         }
@@ -42,25 +42,10 @@ namespace MonoGameEngine.src.Engine.States
             backButton.dimensions = new Vector2(100, 100);
             backButton.setSoundEff(Config.Instance.clickSound);
 
-            winner = new Drawable();
-            switch(Game1.winner)
-            {
-                case 0:
-                    winner.Texture = Config.Instance.player1Wins;
-                    break;
-                case 1:
-                    winner.Texture = Config.Instance.player2Wins;
-                    break;
-                case 2:
-                    winner.Texture = Config.Instance.botWins;
-                    break;
-                case -1:
-                    winner.Texture = Config.Instance.draw;
-                    break;
-            }
-
-            winner.position.X = Game1.WINDOW_WIDTH / 2 - winner.dimensions.X / 2;
-            winner.position.Y = Game1.WINDOW_HEIGHT / 2 - winner.dimensions.Y / 2;
+            info = new Drawable();
+            info.Texture = Config.Instance.info;
+            info.position = new Vector2(260, 140);
+            info.dimensions = new Vector2(1400, 800);
         }
 
         public override void Update()
@@ -78,7 +63,7 @@ namespace MonoGameEngine.src.Engine.States
             background.draw();
             exitButton.draw();
             backButton.draw();
-            winner.draw();
+            info.draw();
         }
 
         public override void Dispose()
@@ -87,5 +72,4 @@ namespace MonoGameEngine.src.Engine.States
         }
     }
 }
-
 

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGameEngine.src.Engine;
 using MonoGameEngine.src.Game;
 using MonoGameEngine.src.Game.States;
+using System.Threading;
 
 namespace MonoGameEngine.src.prefabs
 {
@@ -168,6 +169,12 @@ namespace MonoGameEngine.src.prefabs
         }
         public void update()
         {
+            if(GamePlay.gameOver == true)
+            {
+                Thread.Sleep(2000);
+                StateManager.Instance.SwitchState(GAME_STATE.WIN_SCREEN);
+            }
+
             for (int i = 0; i < dimensions.X; i++)
             {
                 for (int j = 0; j < dimensions.Y; j++)
@@ -249,6 +256,7 @@ namespace MonoGameEngine.src.prefabs
 
         public void movePlayer(Vector2 newCoordinates)
         {
+
             int currentPlayerX = (int)players[GamePlay.onTurn].coordinatesInGrid.X;
             int currentPlayerY = (int)players[GamePlay.onTurn].coordinatesInGrid.Y;
             matrix[currentPlayerX][currentPlayerY].owner = GamePlay.onTurn;
@@ -259,8 +267,20 @@ namespace MonoGameEngine.src.prefabs
             matrix[(int)newCoordinates.X][(int)newCoordinates.Y].isEnabled = false;
             players[GamePlay.onTurn].coordinatesInGrid = newCoordinates;
             players[GamePlay.onTurn].isSelected = false;
+            int lastOnTurn = GamePlay.onTurn;
             GamePlay.switchTurn();
-            if (possibleMoves().Count == 0) StateManager.Instance.SwitchState(GAME_STATE.END_SCREEN_1);
+
+            if (possibleMoves().Count == 0)
+            {
+                if (players[0].points > players[1].points) Game1.winner = 0;
+                else if (players[0].points < players[1].points) Game1.winner = 1;
+                else Game1.winner = -1;
+
+                GamePlay.gameOver = true;
+
+                return;
+            }
+
         }
         public void highlightPossibleMoves()
 		{

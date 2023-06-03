@@ -18,6 +18,7 @@ namespace MonoGameEngine
         public static GameTime curr_time;
         public static double delta_time;
         public static bool end = false;
+        public static int winner = 0;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);

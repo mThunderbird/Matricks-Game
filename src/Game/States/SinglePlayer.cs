@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 using MonoGameEngine.src.prefabs;
 using Microsoft.Xna.Framework;
 using MonoGameEngine.src.Engine;
-using MonoGameEngine.src.Engine.States;
 
 namespace MonoGameEngine.src.Game.States
 {
-    internal class GamePlay : State
+    internal class SinglePlayer : State
     {
-        public GamePlay() { }
+        public SinglePlayer() { }
 
         Drawable background;
         Drawable player1ScoreUI;
         Drawable player2ScoreUI;
         Rectangle player1Score;
         Rectangle player2Score;
-        public static bool gameOver;
 
         Grid grid;
-        public static Vector2 gridDimensions = new Vector2(6, 4);
+
+        public static Vector2 gridDimensions = new Vector2(8, 8);
+
         public static int minGridSize = 4;
         public static int maxGridSize = 16;
 
@@ -35,8 +35,6 @@ namespace MonoGameEngine.src.Game.States
         {
             base.Init();
             onTurn = 0;
-
-            gameOver = false;
 
             background = new Drawable();
             background.Texture = Config.Instance.background;
@@ -66,6 +64,7 @@ namespace MonoGameEngine.src.Game.States
             player2ScoreUI.dimensions = new Vector2(360, 160);
             player2ScoreUI.Texture = Config.Instance.player2Score;
             player2Score = new Rectangle(160, 610, 230, 100);
+
             grid = new Grid(gridDimensions);
         }
 
@@ -90,21 +89,21 @@ namespace MonoGameEngine.src.Game.States
             float points1 = MathF.Round(grid.players[0].points, 1);
             float points2 = MathF.Round(grid.players[1].points, 1);
 
-            Render.drawString(Config.Instance.arialFont, points1.ToString().Replace(",","."), player1Score, Color.White, "XXXXXX");
-            Render.drawString(Config.Instance.arialFont, points1.ToString().Replace(",","."), player1Score, Color.White, "XXXXXX");
+            Render.drawString(Config.Instance.arialFont, points1.ToString().Replace(",", "."), player1Score, Color.White, "XXXXXX");
+            Render.drawString(Config.Instance.arialFont, points1.ToString().Replace(",", "."), player1Score, Color.White, "XXXXXX");
             Render.drawString(Config.Instance.arialFont, points2.ToString(), player2Score, Color.White, "XXXXXX");
         }
 
         public static void switchTurn()
-		{
+        {
             if (onTurn == 0)
             {
                 onTurn = 1;
-			}
-			else
-			{
+            }
+            else
+            {
                 onTurn = 0;
-			}
-		}
+            }
+        }
     }
 }
