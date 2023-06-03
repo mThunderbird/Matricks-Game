@@ -28,30 +28,30 @@ namespace MonoGameEngine.src.Engine.States
         {
             background = new Drawable();
             background.Texture = Config.Instance.background;
-            background.mPosition = new Vector2(0, 0);
-            background.mDimensions = new Vector2(1920, 1080);
+            background.position = new Vector2(0, 0);
+            background.dimensions = new Vector2(1920, 1080);
 
             gameBanner = new Drawable();
             gameBanner.Texture = Config.Instance.gameBanner;
-            gameBanner.mPosition = new Vector2(260, 150);
-            gameBanner.mDimensions = new Vector2(1400, 600);
+            gameBanner.position = new Vector2(260, 150);
+            gameBanner.dimensions = new Vector2(1400, 600);
 
             playButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.MODE_SELECT));
             playButton.Texture = Config.Instance.playButton;
-            playButton.mPosition = new Vector2(260, 820);
-            playButton.mDimensions = new Vector2(540, 160);
+            playButton.position = new Vector2(260, 820);
+            playButton.dimensions = new Vector2(540, 160);
             playButton.setSoundEff(Config.Instance.clickSound);
 
             settingsButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.SETTINGS));
             settingsButton.Texture = Config.Instance.settingsButton;
-            settingsButton.mPosition = new Vector2(1120, 820);
-            settingsButton.mDimensions = new Vector2(540, 160);
+            settingsButton.position = new Vector2(1120, 820);
+            settingsButton.dimensions = new Vector2(540, 160);
             settingsButton.setSoundEff(Config.Instance.clickSound);
 
             exitButton = new Button(() => Game1.end = true);
             exitButton.Texture = Config.Instance.exitButton;
-            exitButton.mPosition = new Vector2(1770, 50);
-            exitButton.mDimensions = new Vector2(100, 100);
+            exitButton.position = new Vector2(1770, 50);
+            exitButton.dimensions = new Vector2(100, 100);
             exitButton.setSoundEff(Config.Instance.clickSound);
         }
 

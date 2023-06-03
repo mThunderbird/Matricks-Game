@@ -29,19 +29,19 @@ namespace MonoGameEngine.src.Game.States
 
             background = new Drawable();
             background.Texture = Config.Instance.background;
-            background.mPosition = new Vector2(0, 0);
-            background.mDimensions = new Vector2(1920, 1080);
+            background.position = new Vector2(0, 0);
+            background.dimensions = new Vector2(1920, 1080);
 
             exitButton = new Button(() => Game1.end = true);
             exitButton.Texture = Config.Instance.exitButton;
-            exitButton.mPosition = new Vector2(1770, 50);
-            exitButton.mDimensions = new Vector2(100, 100);
+            exitButton.position = new Vector2(1770, 50);
+            exitButton.dimensions = new Vector2(100, 100);
             exitButton.setSoundEff(Config.Instance.clickSound);
 
             backButton = new Button(() => StateManager.Instance.SwitchState(GAME_STATE.MENU));
             backButton.Texture = Config.Instance.backButton;
-            backButton.mPosition = new Vector2(50, 50);
-            backButton.mDimensions = new Vector2(100, 100);
+            backButton.position = new Vector2(50, 50);
+            backButton.dimensions = new Vector2(100, 100);
             backButton.setSoundEff(Config.Instance.clickSound);
 
             grid = new Grid(gridDimensions);
