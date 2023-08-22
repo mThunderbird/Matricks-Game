@@ -1,10 +1,6 @@
-# MonoGameEngine
+# Matricks-Game
 
-Small scale Game Engine made with the Monogame Framework and C#
+Grid-based board game built for a dev competition
 
-Creating Wrapper Classes for simplified use and other features like:
-
-Render Class,
-Sound Class,
-State Manager Class,
-Configuration Manager Class,
+Arcade game to play against a friend on the same machine
+Collect as much points as you can to win!
